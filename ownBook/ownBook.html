@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-08-07 Mon 18:39 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="yanboyang" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org573fcd3">1. overview</a>
+<ul>
+<li><a href="#org059259d">1.1. World Wide Web (Web 1.0)</a>
+<ul>
+<li><a href="#org06085f0">1.1.1. Basic Ideas</a></li>
+</ul>
+</li>
+<li><a href="#org0a3db81">1.2. Social Web (Web 2.0)</a></li>
+<li><a href="#orge132965">1.3. Semantic Web – Web 3.0</a></li>
+<li><a href="#org239c738">1.4. Ontology</a></li>
+<li><a href="#org5e85985">1.5. What is Semantic Web for?</a></li>
+<li><a href="#org77e54da">1.6. Describing Web Resources: RDF</a>
+<ul>
+<li><a href="#orge72131a">1.6.1. Resource Description Framework</a></li>
+<li><a href="#orgd9f9911">1.6.2. RDF graphs</a></li>
+<li><a href="#org885f80e">1.6.3. comparing data models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org9f35a3e">2. RDF: Graph-based Model</a>
+<ul>
+<li><a href="#orgceba74b">2.1. Triples</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="org573fcd3" class="outline-2">
+<h2 id="org573fcd3"><span class="section-number-2">1</span> overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+web moodleing is The appropriate application environments, knowledge acquisition and representation schemes are examined along with their relationship to contemporary web-based systems.
+</p>
+</div>
+
+<div id="org059259d" class="outline-3">
+<h3 id="org059259d"><span class="section-number-3">1.1</span> World Wide Web (Web 1.0)</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+A system of interlinked, hypertext documents that runs over the Internet. Information represented in natural languages
+</p>
+<ul class="org-ul">
+<li>Documents contain graphics, multimedia, layouts</li>
+<li>Suitable for human</li>
+<li>Web of documents connected by anchors</li>
+<li>Uniform Resource Identifiers (URI) are used for documents and anchors</li>
+</ul>
+
+<p>
+Underlying the Web is a set of messages that developers of web infrastructure have agreed to treat in a standard manner.
+When a web server speaking HTTP receives a GET request, it should send back data corresponding to the path portion of the
+request message. The semantics of these messages have been thoroughly defined by standards committees and documented in W3C recommendations.
+</p>
+
+<p>
+This standardized infrastructure allows web application developers to operate behind a facade that separates them from
+the details of how application data is transmitted between machines, and focus on how their applications appear to users.
+</p>
+
+<p>
+Web application developers no longer need to coordinate with other developers about message formats or how applications
+should behave in the presence of certain data.
+</p>
+</div>
+
+<div id="org06085f0" class="outline-4">
+<h4 id="org06085f0"><span class="section-number-4">1.1.1</span> Basic Ideas</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<ul class="org-ul">
+<li>Hypertext/hyperlink</li>
+<li>Resource Identifiers</li>
+<li>Uniform Resource Identifiers (URIs) are short strings that identify resources in the web: documents, images, downloadable files, services, electronic mailboxes, and other resources.</li>
+<li>Markup language</li>
+<li>characters or codes embedded in text which indicate structure, semantic meaning, or advice on presentation</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="org0a3db81" class="outline-3">
+<h3 id="org0a3db81"><span class="section-number-3">1.2</span> Social Web (Web 2.0)</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The Web where “ordinary” users can meet, collaborate, and share using social software applications on the Web (tagged content, social bookmarking, AJAX, etc.)
+</p>
+</div>
+</div>
+
+<div id="orge132965" class="outline-3">
+<h3 id="orge132965"><span class="section-number-3">1.3</span> Semantic Web – Web 3.0</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Tim Berners-Lee has a vision of a Semantic Web which has machine-understandable semantics of information, and millions of small specialized reasoning services that provide support in automated task achievement based on the accessible information
+</p>
+</div>
+</div>
+
+<div id="org239c738" class="outline-3">
+<h3 id="org239c738"><span class="section-number-3">1.4</span> Ontology</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+The semantic Web is essentially based on ontologies, which are formal and consensual specifications of conceptualizations&#x2026; (e.g. by OO Models, or Entity Relationship model)
+Providing a shared and common understanding of a domain that can be communicated across people and application systems (not application specific, but consensual for a domain)
+Ontologies describe concepts and their Relations.
+</p>
+</div>
+</div>
+
+<div id="org5e85985" class="outline-3">
+<h3 id="org5e85985"><span class="section-number-3">1.5</span> What is Semantic Web for?</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Integrating - trying to solve the problem of data and service integration
+Searching - Providing better communication between human and computers by adding machine-processable semantics to data.
+</p>
+</div>
+</div>
+
+<div id="org77e54da" class="outline-3">
+<h3 id="org77e54da"><span class="section-number-3">1.6</span> Describing Web Resources: RDF</h3>
+<div class="outline-text-3" id="text-1-6">
+</div><div id="orge72131a" class="outline-4">
+<h4 id="orge72131a"><span class="section-number-4">1.6.1</span> Resource Description Framework</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<p>
+– A framework for representing information about resources in the Web
+– Intended for situations in which information needs to be processed by applications (machine)
+</p>
+</div>
+</div>
+<div id="orgd9f9911" class="outline-4">
+<h4 id="orgd9f9911"><span class="section-number-4">1.6.2</span> RDF graphs</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<p>
+– Are sets of subject‐predicate‐object triples, where elements may be IRIs, blank nodes or datatyped literals.
+</p>
+</div>
+</div>
+<div id="org885f80e" class="outline-4">
+<h4 id="org885f80e"><span class="section-number-4">1.6.3</span> comparing data models</h4>
+<div class="outline-text-4" id="text-1-6-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Model</th>
+<th scope="col" class="org-left">Example format</th>
+<th scope="col" class="org-left">Data</th>
+<th scope="col" class="org-left">Metadate</th>
+<th scope="col" class="org-left">Identifier</th>
+<th scope="col" class="org-left">Query syntax</th>
+<th scope="col" class="org-left">Semantics (Meaning)</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">&#xa0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Relational</td>
+<td class="org-left">Mysql, Oracle</td>
+<td class="org-left">Table Cell values</td>
+<td class="org-left">Table Column</td>
+<td class="org-left">Primary key (Data Column) value</td>
+<td class="org-left">SQL</td>
+<td class="org-left">n/a</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Hierarchical</td>
+<td class="org-left">XML</td>
+<td class="org-left">Tag/Attribute Values</td>
+<td class="org-left">XSD/DTD</td>
+<td class="org-left">Unique Attribute Key Value</td>
+<td class="org-left">Xpath</td>
+<td class="org-left">n/a</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Graph</td>
+<td class="org-left">RDF/XML,Turtle</td>
+<td class="org-left">RDF</td>
+<td class="org-left">RDFS/OWL</td>
+<td class="org-left">URL</td>
+<td class="org-left">SPARQL</td>
+<td class="org-left">Yes, using RDFS and RDFS and OWL</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<div id="org9f35a3e" class="outline-2">
+<h2 id="org9f35a3e"><span class="section-number-2">2</span> RDF: Graph-based Model</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>A graph of nodes and arcs representing the resources and their properties and values</li>
+<li>A graph is a collection of triples</li>
+</ul>
+<p>
+– Subject, predicate, object
+– Represented as node‐arc‐node
+– Predicate denotes a relationship
+– Direction of arc is significant
+</p>
+<ul class="org-ul">
+<li>Always point to the object</li>
+</ul>
+<p>
+[[./img/graphBasedModel.jpg}]
+</p>
+</div>
+<div id="orgceba74b" class="outline-3">
+<h3 id="orgceba74b"><span class="section-number-3">2.1</span> Triples</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+RDF triple has the following structure: &lt;subject&gt; &lt;predicate&gt; &lt;object&gt;
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: yanboyang</p>
+<p class="date">Created: 2017-08-07 Mon 18:39</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

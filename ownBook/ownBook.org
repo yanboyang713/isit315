@@ -1,0 +1,736 @@
+* overview
+web moodleing is The appropriate application environments, knowledge acquisition and representation schemes are examined along with their relationship to contemporary web-based systems.
+
+** World Wide Web (Web 1.0)
+A system of interlinked, hypertext documents that runs over the Internet. Information represented in natural languages
+- Documents contain graphics, multimedia, layouts
+-  Suitable for human
+- Web of documents connected by anchors
++ Uniform Resource Identifiers (URI) are used for documents and anchors
+
+Underlying the Web is a set of messages that developers of web infrastructure have agreed to treat in a standard manner.
+When a web server speaking HTTP receives a GET request, it should send back data corresponding to the path portion of the
+request message. The semantics of these messages have been thoroughly defined by standards committees and documented in W3C recommendations.
+
+This standardized infrastructure allows web application developers to operate behind a facade that separates them from
+the details of how application data is transmitted between machines, and focus on how their applications appear to users.
+
+Web application developers no longer need to coordinate with other developers about message formats or how applications
+should behave in the presence of certain data.
+
+*** Basic Ideas
+- Hypertext/hyperlink
+- Resource Identifiers
++ Uniform Resource Identifiers (URIs) are short strings that identify resources in the web: documents, images, downloadable files, services, electronic mailboxes, and other resources.
+- Markup language
++ characters or codes embedded in text which indicate structure, semantic meaning, or advice on presentation
+
+** Social Web (Web 2.0)
+The Web where “ordinary” users can meet, collaborate, and share using social software applications on the Web (tagged content, social bookmarking, AJAX, etc.)
+
+** Semantic Web – Web 3.0
+   Tim Berners-Lee has a vision of a Semantic Web which has machine-understandable semantics of information, and millions of small specialized reasoning services that provide support in automated task achievement based on the accessible information
+
+** Ontology
+The semantic Web is essentially based on ontologies, which are formal and consensual specifications of conceptualizations... (e.g. by OO Models, or Entity Relationship model)
+Providing a shared and common understanding of a domain that can be communicated across people and application systems (not application specific, but consensual for a domain)
+Ontologies describe concepts and their Relations.
+
+** What is Semantic Web for?
+Integrating - trying to solve the problem of data and service integration
+Searching - Providing better communication between human and computers by adding machine-processable semantics to data.
+
+** Describing Web Resources: RDF
+*** Resource Description Framework
+– A framework for representing information about resources in the Web
+– Intended for situations in which information needs to be processed by applications (machine)
+*** RDF graphs
+– Are sets of subject‐predicate‐object triples, where elements may be IRIs, blank nodes or datatyped literals.
+*** comparing data models
+| Model        | Example format | Data                 | Metadate     | Identifier                      | Query syntax | Semantics (Meaning)              |   |   |   |   |   |   |   |
+|--------------+----------------+----------------------+--------------+---------------------------------+--------------+----------------------------------+---+---+---+---+---+---+---|
+| Relational   | Mysql, Oracle  | Table Cell values    | Table Column | Primary key (Data Column) value | SQL          | n/a                              |   |   |   |   |   |   |   |
+| Hierarchical | XML            | Tag/Attribute Values | XSD/DTD      | Unique Attribute Key Value      | Xpath        | n/a                              |   |   |   |   |   |   |   |
+| Graph        | RDF/XML,Turtle | RDF                  | RDFS/OWL     | URL                             | SPARQL       | Yes, using RDFS and RDFS and OWL |   |   |   |   |   |   |   |
+
+* RDF: Graph-based Model
++ A graph of nodes and arcs representing the resources and their properties and values
++ A graph is a collection of triples
+– Subject, predicate, object
+– Represented as node‐arc‐node
+– Predicate denotes a relationship
+– Direction of arc is significant
++ Always point to the object
+[[./img/graphBasedModel.jpg}]
+
+URIrefs are shown as ellipses
+Literals are shown as boxs
+
+
+* Triples
+RDF triple has the following structure: <subject> <predicate> <object>
+
+The subject - which is an RDF URI reference or a blank node
+
+The predicate (also called property) - which is an RDF URI reference
+
+The object - which is an RDF URI reference, a literal or a blank node
+
+* Three kinds of nodes in RDF graph
+** IRI (Internationalized Resource Identifier)
+Can appear in all three positions of a triple
+Are global identifiers and reusable
+- so other people can re-use the IRI to identify the same thing
+IRI is a generalisation of URI
+URL is a form of IRI
+** Literals
+Basic values that are not IRIs
+Onlu appear in object position of a triple
+Literals have datatypes that define range of possible
+value: strings, numbers, dates
+Can be associated with a datatype
+- RDF re-uses many of the XML Schema built-in datatypes
+
+** Blank nodes
+Denote resources without explicitly naming them with IRIs
+Can appear in the subject or object position of a trople
+Blank nodes do not identify specific resources
+
+**  RDF Vocabularies
+To support the definition of vocabularies RDF provides the RDF Schema language
+This language allows one to define semantic characteristics of RDF data.
+
+The main modeling constructs provided by RDF Schema are summarized in the table below:
+
+RDF Schema Constructs
+
+| Construct                 | Syntactic form           | Description                                  |
+|---------------------------+--------------------------+----------------------------------------------|
+| Class (a class)           | C rdf:type rdf:Property  | C (a resource) is an RDF class               |
+| Property (a class)        | P rdf:type rdf:Property  | P (a resource) is an RDF property            |
+| type (a property)         | I rdf:type C             | I (a resource) is an instance of C (a class) |
+| subClassOf(a property)    | C1 rdfs:subClassOf C2    | C1 (a class) is a subclass of C2 (a class)   |
+| subPropertyOf(a property) | P1 rdfs:subPropertyOf P2 | property of P2 (a property)                  |
+| domain (a property)       | P rdfs:domain C          | domain of P (a property) is C (a class)      |
+| range (a property)        | P rdfs:range C           | range of P (a property) is C (a class)       |
+
+*** Example of RDF vocabularies used world wide
++ Friend of a friend (FOAF)
+  - to describe social network
++ Dublin Core
+  - maintains a metadate element set for describing a wide range of resources
++ schema.org
+  - a vocabulary developed by a group of major search providers.
++ SKOS
+  - is a vocabulary for publishing classification schemes such as terminologies and thesauri on the web
+
+* Serialization formats
++ Turtle family of RDF languages
+  - N-Triples, Turtle
++ RDF/XML (XML syntax for RDF).
+
+N-Triples
+- A line-based, plain text format for encoding an RDF graph.
+* Turtle
+- An extension of N-Triples
+- Turtle introduces a number of syntactic shortcuts, such as support for namespace prefixes, list and shorthands for detatyped literals.
+- Turtle provides a trade-off between ease of writing, ease of parsing and readability
+* RDF/XML
+RDF document represented by XML statement with the tag rdf:RDF
+
+The content of the element is a number of descriptions which use rdf:Description tags
+- Every description is a statement about a resource
+  + An aboout attribute, referencing an existing resource
+  + An ID attribute, creating a new resource
+  + Without a name, creating an anonymous resource
+
+* Example
+<rdf:RDF>
+  <rdf:Description
+  about="http://www.w3.org/Home/Lassila">
+  <s:Creator>Ora Lassila</s:Creator>
+  </rdf:Description>
+</rdf:RDF>
+** Complete XML
+<?xml version="1.0"?>
+<rdf:RDF
+xmlns:rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xmlns:s="http://description.org/schema/">
+<rdf:Description
+about="http://www.w3.org/Home/Lassila">
+<s:Creator>Ora Lassila</s:Creator>
+</rdf:Description>
+</rdf:RDF>
+
+* Description element
+  - The Description element names, in an about attribute, the resource to which each of the statements apply.
+  - If the resource does not yet exist (i.e., does not yet have a resource identifier) then a Description element can supply the identifier for the resource using an ID attribute.
+* Declaring the use of RDF
+It is necessary to declare that RDF is being used so that applications can recognise this is an RDF/XML document.
+
+** Example
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF PUBLIC "-//DUBLIN CORE//DCMES DTD
+2002/07/31//EN“
+"http://dublincore.org/documents/2002/07/31/dcmesxml/dcmes-xml-dtd.dtd">
+<rdf:RDF
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rdf:Description
+rdf:about="http://www.ilrt.bristol.ac.uk/people/cmdjb/">
+<dc:title>Dave Beckett's Home Page</dc:title>
+<dc:creator>Dave Beckett</dc:creator>
+<dc:publisher>ILRT, University of
+Bristol</dc:publisher>
+<dc:date>2002-07-31</dc:date>
+</rdf:Description>
+</rdf:RDF>
+
+* RDF/XML
+• RDF document represented by XML statement with the tag rdf:RDF
+• It is necessary to declare that RDF is being used so that applications can recognise this is an RDF/XML document.
+• The content of the element is a number of descriptions which use rdf:Description tags
+– Every description is a statement about a resource
+• An about attribute, referencing an existing resource
+• An ID attribute, creating a new resource
+• Without a name, creating an anonymous resource
+
+<?xml version="1.0"?>
+<rdf:RDF
+xmlns:rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xmlns:s="http://description.org/schema/">
+<rdf:Description
+about="http://www.w3.org/Home/Lassila">
+<s:Creator>Ora Lassila</s:Creator>
+</rdf:Description>
+</rdf:RDF>
+
+* Containers
+• refer to a collection of resources
+– e.g. a list of students
+• three types of container objects
+– Bag (rdf: Bag)
+– Sequence (rdf: Seq )
+– Alternative (rdf: Alt)
+• Therefore the rdfs:Container class is a super‐class of rdf:Bag, rdf:Seq, rdf:Alt
+
+** rdf:Bag
+• an unordered list of resources or literals
+• to declare a property with multiple values and there is no significance to the order in which the values are given
+• e.g.
+– a list of part numbers where order of processing is unimportant, duplicate values are permitted
+
+[./img/containerBag.jpg]
+
+*** example A list of favourite fruits: banana, apple
+and pear
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Bag rdf:about="http://example.org/favourite-fruit">
+<rdf:_1 rdf:resource="http://example.org/banana"/>
+<rdf:_2 rdf:resource="http://example.org/apple"/>
+<rdf:_3 rdf:resource="http://example.org/pear"/>
+</rdf:Seq>
+</rdf:RDF>
+
+** rdf:Seq
+• an ordered list of resources or literals
+• to declare a property with multiple values and order of the values is significant
+• e.g.
+– alphabetical ordering of values, duplicate values are permitted
+
+[./img/containerSeq.jpg]
+
+*** example A list of favourite fruits: banana, apple
+and pear (in the order specified)
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Seq rdf:about="http://example.org/favourite-fruit">
+<rdf:_1 rdf:resource="http://example.org/banana"/>
+<rdf:_2 rdf:resource="http://example.org/apple"/>
+<rdf:_3 rdf:resource="http://example.org/pear"/>
+</rdf:Seq>
+</rdf:RDF>
+
+** rdf:Alt
+• a list of resources or literals for the single value of a property
+– e.g. provide alternative language translations for the title of the work, or to provide a list of Internet mirror sites at which the resource might be found
+• can choose any one of the items in the list as appropriate
+
+[./img/containerAlt.jpg]
+
+*** example A list of favourite fruits: banana, apple
+and pear (choose one from the list)
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-
+rdf-syntax-ns#">
+<rdf:Alt rdf:about="http://example.org/favouritefruit">
+<rdf:_1
+rdf:resource="http://example.org/banana"/>
+<rdf:_2
+rdf:resource="http://example.org/apple"/>
+<rdf:_3 rdf:resource="http://example.org/pear"/>
+</rdf:Seq>
+</rdf:RDF>
+
+** rdf:li
+• a convenient element to avoid having to explicitly number each member
+– list item
+
+*** example A list of favourite fruits: banana, apple
+and pear
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntaxns#">
+<rdf:Seq rdf:about="http://example.org/favourite-fruit">
+<rdf:li rdf:resource="http://example.org/banana"/>
+<rdf:li rdf:resource="http://example.org/apple"/>
+<rdf:li rdf:resource="http://example.org/pear"/>
+</rdf:Seq>
+</rdf:RDF>
+
+** Predicate Lists in N‐Triple
+• Often the same subject will be referenced by a number of predicates.
+• use the ';' symbol to repeat the subject of triples that vary only in predicate and object RDF terms
+
+*** Example
+<http://example.org/#spiderman>
+<http://www.perceive.net/schemas/relationship/enemyOf>
+<http://example.org/#green‐goblin> ;
+<http://xmlns.com/foaf/0.1/name> "Spiderman" .
+
+** Object list in N‐Triple
+• Objects are repeated with the same subject and predicate.
+• the ',' symbol is used to repeat the subject and predicate of triples that only differ in the object RDF term.
+
+*** Example
+<http://example.org/#spiderman>
+<http://xmlns.com/foaf/0.1/name>
+"Spiderman", "Человек‐паук"@ru .
+
+** Turtle (Terse RDF Triple Language)
+• a more compact serialization of RDF
+• uses prefix
+• A prefixed name is a prefix label and a local part, separated by a colon ":"
+
+*** Example
+@base <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22‐rdf‐syntax‐ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf‐schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rel: <http://www.perceive.net/schemas/relationship/> .
+<#green‐goblin>
+rel:enemyOf <#spiderman> ;
+a foaf:Person ; # in the context of the Marvel universe
+foaf:name "Green Goblin" .
+<#spiderman>
+rel:enemyOf <#green‐goblin> ;
+a foaf:Person ;
+foaf:name "Spiderman", "Человек‐паук"@ru .
+
+• Define a prefix label
+http://www.perceive.net/schemas/relationship/ as somePrefix
+Then write
+somePrefix:enemyOf
+
+is equivalent to
+<http://www.perceive.net/schemas/relationship/enemyOf>
+
+
+** RDF Literals
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+<http://example.org/#green‐goblin> foaf:name
+"Green Goblin" .
+<http://example.org/#spiderman> foaf:name
+"Spiderman" .
+
+** RDF Blank Nodes
+• In Turtle
+– expressed as _: followed by a blank node label which is a series of name characters.
+• A fresh RDF blank node is allocated for each unique blank node label in a document.
+Repeated use of the same blank node label identifies the same RDF blank node.
+
+*** Example
+_:a <http://xmlns.com/foaf/0.1/name> "Alice" .
+_:a <http://xmlns.com/foaf/0.1/knows> _:b .
+_:b <http://xmlns.com/foaf/0.1/name> "Bob" .
+_:b <http://xmlns.com/foaf/0.1/knows> _:c .
+_:c <http://xmlns.com/foaf/0.1/name> "Eve" .
+_:b <http://xmlns.com/foaf/0.1/mbox> <bob@example.com> .
+
+** Collections
+• Collection structure for lists of RDF nodes
+• The Turtle syntax for Collections is a possibly empty list of RDF terms enclosed by ()
+• Reference:
+– https://www.w3.org/TR/rdf‐schema/#ch_containervocab
+
+*** Example
+@prefix : <http://example.org/foo> .
+# the object of this triple is the RDF collection
+blank node
+:subject :predicate ( :a :b :c ) .
+# an empty collection value ‐ rdf:nil
+:subject :predicate2 () .
+
+RDF Collection
+• rdf:List
+• rdf:first
+• rdf:rest
+• rdf:nil
+• Reference
+https://www.w3.org/TR/turtle/#collections
+
+** The RDF Schema (RDFS)
+• Link:
+https://www.w3.org/TR/rdf‐schema/
+• Is a semantic extension of RDF
+– May impose special syntactic conditions or restrictions upon RDF graphs
+• It provides mechanisms for describing groups of related resources and the relationships between these resources
+– e.g. we could define the eg:author property to have a domain of eg:Document and a range of eg:Person
+
+*** Example1
+• Types in RDF:
+<#john, rdf:type, #Student>
+• What is a “#Student”?
+–“#Student” identifies a category (a concept or a class)
+
+We need a language for defining RDF types:
+–Define classes:
+• “#Student is a class”
+–Relationships between classes:
+• “#Student is a sub‐class of #Person”
+–Properties of classes:
+• “#Person has a property hasName”
+• RDF Schema is such a language
+
+** RDFS: Class & Property
+• RDF Schema describes properties in terms of the classes of resource to which they
+apply.
+• This is the role of the domain and range mechanisms
+• Example,
+– eg:author property has a domain of eg:Document and a range of
+eg:Person,
+– whereas a classical object oriented system may define a class eg:Book with an
+attribute called eg:author of type eg:Person.
+– Using the RDF approach, it is easy for others to subsequently define additional
+properties with a domain of eg:Document or a range of eg:Person. This can be
+done without the need to re‐define the original description of these classes.
+– One benefit of the RDF property‐centric approach is that it allows anyone to
+extend the description of existing resources, one of the architectural principles
+of the Web
+• RDFS strategy is to acknowledge that there are many techniques through which
+the meaning of classes and properties can be described
+
+
+** RDFS Vocabulary
+
+• RDFS Extends the RDF Vocabulary
+• RDFS summary can be found at the following link and
+https://www.w3.org/TR/rdf-schema/#ch_summary
+• Namespace
+rdfs: https://www.w3.org/TR/rdf-schema#
+
+RDFS Classes
+– rdfs:Resource
+– rdfs:Class
+– rdfs:Literal
+– rdfs:Datatype
+– rdfs:Container
+– rdfs:ContainerMembershipProperty
+
+RDFS Properties
+– rdfs:domain
+– rdfs:range
+– rdfs:subPropertyOf
+– rdfs:subClassOf
+– rdfs:member
+– rdfs:seeAlso
+– rdfs:isDefinedBy
+– rdfs:comment
+– rdfs:label
+
+* Classes
+• Resources may be divided into groups called classes.
+• The members of a class are known as instances of the class.
+rdfs: Class
+
+** Subclass
+• If a class C is a subclass of a class C', then all
+instances of C will also be instances of C'.
+rdfs:subClassOf
+
+* Property
+• property  characteristics of class
+• rdf: Property
+– all properties in RDF are instances of class
+rdf:Property
+– example: ex:age rdf:type rdf:Property
+• To describe property
+– rdfs: domain
+– rdfs:range
+– rdfs:subPropertyOf
+
+** rdfs:range
+• the values of a particular property
+• example
+ex:hasMother rdfs:range ex:Female .
+ex:age rdfs:range xsd:integer .
+
+** rdfs:domain
+• a particular property applies to a designated
+class.
+ex:Book rdf:type rdfs:Class .
+ex:author rdf:type rdf:Property .
+ex:author rdfs:domain ex:Book .
+
+*** Example
+<rdf:Property rdf:ID="registeredTo">
+<rdfs:domain rdf:resource="#MotorVehicle"/>
+<rdfs:range rdf:resource="#Person"/>
+</rdf:Property>
+<rdf:Property rdf:ID="rearSeatLegRoom">
+<rdfs:domain rdf:resource="#PassengerVehicle"/>
+<rdfs:range rdf:resource="&xsd;integer"/>
+</rdf:Property>
+
+RDF Schema Example
+<rdf:RDF xml:base="http://example.org/univ-ont#"
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+xmlns:univ="http://example.org/univ-ont#">
+<rdf:Property rdf:about="#teaches">
+<rdfs:domain rdf:resource="#Professor" />
+<rdfs:range rdf:resource="#Course" />
+</rdf:Property>
+<univ:Person rdf:about="#heflin" >
+<univ:teaches rdf:resource="#cse428" />
+</univ:Person>
+</rdf:RDF>
+
+
+** rdfs:subPropertyOf
+ex:driver rdf:type rdf:Property .
+ex:primaryDriver rdf:type rdf:Property .
+ex:primaryDriver rdfs:subPropertyOf ex:driver .
+
+RDF/XML
+<rdf:Property rdf:ID="driver">
+<rdfs:domain rdf:resource="#MotorVehicle"/>
+</rdf:Property>
+<rdf:Property rdf:ID="primaryDriver">
+<rdfs:subPropertyOf rdf:resource="#driver"/>
+</rdf:Property>
+
+
+Example of Instance
+<ex:PassengerVehicle rdf:ID="johnSmithsCar">
+<ex:registeredTo
+rdf:resource="http://www.example.org/staffid/85740"/>
+<ex:rearSeatLegRoom
+rdf:datatype="&xsd;integer">127</ex:rearSeatLegRoom>
+<ex:primaryDriver
+rdf:resource="http://www.example.org/staffid/85740"/>
+</ex:PassengerVehicle>
+
+
+* Limitations of expressive power of RDF schema
+• RDF/RDFS
+– organise vocabularies in typed hierarchies:
+subclass and subproperty relationships, domain
+and range restrictions, and instances of classess
+• missing
+– local scope of properties
+• e.g. rdfs:range defines the range of a property say
+eats for all classes, but RDF schema cannot declare
+range restrictions that apply to some classes only, e.g.
+we cannot say cows eat only plants while other animals
+may eat meat
+
+• disjointness of classess
+– e.g. male and female are disjoint
+– but in RDF schema, we can only state subclass
+relationship, e.g. female is a subclass of person
+• boolean combinations of classes
+– sometimes we wish to build new classes by combining
+other classes using union (), intersection (),
+complement (\).
+• e.g. we wish to define the class person to be disjoint union
+of classes male and female. RDF schema does not allow.
+• cardinality restrictions
+– to place restrictions on how many distinct values a
+property may or may not take
+• e.g. a person has exactly two parents, a course is taught
+by at least one lecturer
+• not possible to express in RDF schema
+• special characteristics of properties
+– RDF schema cannot allow properties such as
+inverse (eats and is eaten by) to express
+
+
+* OWL 2
+• OWL = Web Ontology Language
+– is a language for expressing ontologies
+– An ontology provides the means for describing
+explicitly the conceptualization behind the
+knowledge represented in a knowledge base.
+– Ontologies are the backbone of the Semantic
+Web.
+– They provide the knowledge that is required for
+semantic applications of all kinds.
+
+* Notes
+• OWL 2 is not a programming language:
+– It is declarative, i.e. it describes a state of affairs in
+a logical way
+• is a knowledge representation language
+designed to formulate, exchange and reason
+with knowledge about a domain of interest
+– Then reasoners can be used to infer further
+information about that state of affairs.
+– How these inferences are realized algorithmically
+is not part of the OWL document but depends on
+the specific implementations.
+
+** Requirements for ontology language
+• Allow users to write explicit, formal
+conceptualisations of domain models
+• Well‐defined syntax
+• Efficient reasoning support
+• Formal semantics
+• Sufficient expressive power
+• Convenience of expression
+
+** Formal semantics
+• Describes the meaning of knowledge precisely
+– Precisely: does not open to different
+interpretations by different people/machine
+• Allow people to reason about the knowledge
+– Class membership
+• If x is an instance of a class C, and C is a subclass of D,
+then we infer x is an instance of D
+– Equivalence of class
+• If class A is equivalent to class B, and class B is
+equivalent to class C, then A is equivalent to C
+
+** Reasoning about knowledge
+• Consistency
+– Suppose we have declared x to be an instance of class
+A and A is a subclass of B  C, A is a subclass of D and
+B and D are disjoint, then we have inconsistency
+because A should be empty but has an instance x. This
+is an indication of error
+• Classification
+– If we have declared that certain property‐value pairs
+are a sufficient condition for memberships in a class A,
+then if an individual x satisfies such conditions, we can
+conclude that x must be an instance of A
+
+* Three sublanguages of OWL
+• OWL Full
+• OWL DL (Descriptive Logic)
+• OWL Lite
+
+** OWL Lite
+• Supports those users primarily needing a
+classification hierarchy and simple constraints.
+• Thesauri and other taxonomies.
+
+** OWL DL
+• Supports those users who want the maximum
+expressiveness while retaining computational
+completeness (all conclusions are guaranteed
+to be computable) and decidability (all
+computations will finish in finite time).
+• So named due to its correspondence with
+description logics
+
+** OWL Full
+• Maximum expressiveness and the syntactic
+freedom of RDF with no computational
+guarantees.
+• It is unlikely that any reasoning software will
+be able to support complete reasoning for
+every feature of OWL Full.
+
+** The following set of relations hold; but
+not their inverses
+• Every legal OWL Lite ontology is a legal OWL
+DL ontology.
+• Every legal OWL DL ontology is a legal OWL
+Full ontology.
+• Every valid OWL Lite conclusion is a valid OWL
+DL conclusion.
+• Every valid OWL DL conclusion is a valid OWL
+Full conclusion.
+
+** OWL Lite
+• Class
+• rdfs: subClassOf
+• rdf: Property
+• rdfs: subPropertyOf
+• rdfs: domain
+• rdfs: range
+• Individual
+
+** OWL Lite Equality and Inequality
+• equivalentClass
+• equivalentProperty
+• sameAs
+• differentAs
+• AllDifferent
+• See https://www.w3.org/TR/2004/REC‐owl‐features‐20040210/#s2.1
+
+*** equivalentClass
+• Two classes may be stated to be equivalent.
+• Equivalent classes have the same instances.
+• Equality can be used to create synonymous
+classes.
+• Example
+– Car can be stated to be equivalentClass to
+Automobile.
+– From this a reasoner can deduce that any individual
+that is an instance of Car is also an instance of
+Automobile and vice versa
+
+
+*** equivalentProperty
+• Two properties may be stated to be equivalent.
+• Equivalent properties relate one individual to the same set
+of other individuals.
+• Equality may be used to create synonymous properties.
+• Example
+– hasLeader may be stated to be the equivalentProperty to
+hasHead.
+– From this a reasoner can deduce that if X is related to Y by the
+property hasLeader, X is also related to Y by the property
+hasHead and vice versa.
+– A reasoner can also deduce that hasLeader is a subproperty of
+hasHead and hasHead is a subProperty of hasLeader.
+
+*** sameAs
+• Two individuals may be stated to be the same.
+• Example:
+– The individual Deborah may be stated to be the
+same individual as DeborahMcGuinness.
+
+
+*** differentFrom
+• An individual may be stated to be different
+from other individuals.
+• Example
+– the individual Frank may be stated to be different
+from the individuals Deborah and Jim.
+– Thus, if the individuals Frank and Deborah are
+both values for a property that is stated to be
+functional (thus the property has at most one
+value), then there is a contradiction.
+
+*** AllDifferent
+• A number of individuals may be stated to be
+mutually distinct.
+• Example,
+– Frank, Deborah, and Jim could be stated to be
+mutually distinct using the AllDifferent construct.
+– The AllDifferent construct is particularly useful when
+there are sets of distinct objects and when modelers
+are interested in enforcing the unique names
+assumption within those sets of objects.

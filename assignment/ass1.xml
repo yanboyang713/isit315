@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <rdf:RDF
+            xmlns:dcterms="http://purl.org/dc/terms/"
+            xmlns:foaf="http://xmlns.com/foaf/0.1/"
+            xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+            xmlns:schema="http://schema.org/"
+            xmlns:dc="http://purl.org/dc/elements/1.1/"
+            xmlns:ex="http://yanboyang.com/">
+
+      <rdf:Description rdf:about="http://yanboyang/boyang#me">
+
+          <schema:birthDate rdf:datatype="http://www.w3.org/2001/XMLSchema#date">1993-07-13</schema:birthDate>
+
+          <ex:favoriteCelebrity>
+            <rdf:Description>
+              <ex:homePage>
+                <rdf:Description rdf:about="https://en.wikipedia.org/wiki/Larry_Page">
+                </rdf:Description>
+              </ex:homePage>
+              <ex:fullName>Larry Page</ex:fullName>
+            </rdf:Description>
+          </ex:favoriteCelebrity>
+
+          <foaf:favoriteBook rdf:resource="https://www.amazon.com/Primer-5th-Stanley-B-Lippman/dp/0321714113"/>
+
+          <foaf:personalBlog rdf:resource="http://blog.yanboyang.com/"/>
+
+          <ex:enrolledCourse>
+            <rdf:Bag rdf:about="http://www.uow.edu.au/handbook/yr2017/ug/H17006862.html">
+              <rdf:_1 rdf:resource="https://solss.uow.edu.au/apir/public_subjectview.subject_info_view?p_subject_code=CSCI203"/>
+              <rdf:_2 rdf:resource="https://solss.uow.edu.au/apir/public_subjectview.subject_info_view?p_subject_code=CSCI318"/>
+              <rdf:_3 rdf:resource="https://solss.uow.edu.au/apir/public_subjectview.subject_info_view?p_subject_code=ISIT315"/>
+            </rdf:Bag>
+        </ex:enrolledCourse>
+
+      </rdf:Description>
+
+       <rdf:Description rdf:about="https://www.amazon.com/Primer-5th-Stanley-B-Lippman/dp/0321714113">
+          <dcterms:title>C++ Primer</dcterms:title>
+          <dcterms:creator rdf:resource="https://www.amazon.com/Stanley-B.-Lippman/e/B000APLJ0A/ref=dp_byline_cont_pop_book_1"/>
+       </rdf:Description>
+
+        <rdf:Description rdf:about="http://blog.yanboyang.com/">
+          <dc:title>Boyang Yan's personal blog</dc:title>
+        </rdf:Description>
+
+    </rdf:RDF>

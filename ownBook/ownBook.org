@@ -734,3 +734,165 @@ mutually distinct using the AllDifferent construct.
 there are sets of distinct objects and when modelers
 are interested in enforcing the unique names
 assumption within those sets of objects.
+
+
+* Property characteristics
+• ObjectProperty
+• DatatypeProperty
+• inverseOf
+• TransitiveProperty
+• SymmetricProperty
+• FunctionalProperty
+• InverseFunctionalProperty
+
+** inverseOf
+• If some property links
+individual a to individual b,
+then its inverse property will
+link individual b to individual a
+• Example,
+if hasChild is the inverse of
+hasParent
+Matthew hasParent Jean
+then a reasoner can
+deduce that
+Jean hasChild Matthew
+
+** TransitiveProperty
+If a property P is transitive, and the property
+relates to individual a to individual b and also
+individual b to individual c, then we infer that a
+is related to c via property P
+
+** SymmetricProperty
+If a property P is symmetric and the
+property relates individual a to individual b
+then individual b is also related to
+individual a via property P
+
+** FunctionalProperty
+• for a given
+individual, there
+is at most one
+individual that is
+related to the
+individual via the
+property
+• also known as
+single valued
+(unique) property
+
+** InverseFunctionalProperty
+If a properties is inverse functional it means the
+inverse property is functional
+
+** OWL Lite Property Restrictions –how many values can be used.
+• allValuesFrom
+– this property on this particular class has a local
+range restriction associated with it.
+• someValuesFrom
+– A particular class may have a restriction on a
+property that at least one value for that property
+is of a certain type.
+
+** OWL Lite Restricted Cardinality – concerning cardinalities of value 0 or 1
+• minCardinality
+– minCardinality = 1 then any instance of that class will be related to at
+least one individual by that property.
+– minCardinality = 0, then the property is optional with respect to a
+class.
+• maxCardinality
+– maxinCardinality = 1 then any instance of that class will be related to
+at most one individual by that property.
+– maxCardinality = 0, then the property is no value with respect to that
+property.
+• Cardinality
+– Provided as convenience when it is useful to state a property on a
+class has both minCardinality 0 and maxCardinality 0 or both
+minCardinality 1 and maxCardinality 1
+
+** OWL Lite Class Intersection
+• intersectionOf
+– intersections of named classes and restrictions.
+• Example
+– the class EmployedPerson can be described as the
+intersectionOf Person and EmployedThings
+– From this a reasoner may deduce that any
+particular EmployedPerson has at least one
+employer
+
+
+** List of OWL DL and Full language
+constructs
+• see http://www.w3.org/TR/2004/REC‐owl‐
+features‐20040210/#s2.2
+
+* Ontology
+• Formalized vocabularies of terms, often
+covering a specific domain and shared by a
+community of users.
+– They specify the definitions of terms by describing
+their relationships with other terms in the
+ontology.
+• An ontology is a set of precise descriptive
+statements about some part of the world
+
+** Different Syntaxes
+| Name of Syntax    | Specification                  | Status                    | Purpose                                                                |
+|-------------------+--------------------------------+---------------------------+------------------------------------------------------------------------|
+| RDF/XML           | Mapping to RDF Graphs, RDF/XML | Mandatory                 | Interchange (can be written and read by all conformant OWL 2 software) |
+| OWL/XML           | XML Serialization              | Optional                  | Easier to process using XML tools                                      |
+| Functional Syntax | Structural Specification       | Optional                  | Easier to see the formal structure of ontologies                       |
+| Manchester Syntax | Manchester Syntax              | Optional                  | Easier to read/write DL Ontologies                                     |
+| Turtle            | Mapping to RDF Graphs, Turtle  | Optional, Not from OWL-WG | Easier to read/write RDF triples                                                   |
+
+** OWL Syntax
+• An OWL ontology is an RDF graph  a set of
+RDF triples
+– The meaning of an OWL ontology is solely
+determined by RDF graph
+• OWL is a vocabulary extension of RDF
+• The built-in vocabulary for OWL comes from
+OWL namespace
+owl: http://www.w3.org/2002/07/owl#
+
+** OWL 2: Modeling knowledge
+• OWL 2 is a knowledge representation knowledge,
+designed to formulate, exchange and reason with
+knowledge about a domain of interest.
+• Basic notions:
+– Axioms: the basic statements that an OWL ontology
+expresses
+– Entities: elements used to refer to real-world objects
+– Expressions: combinations of entities to form complex
+descriptions from basic ones
+
+** To formulate knowledge explicitly
+• Ontology consists of statements (or
+propositions)
+– Example of statements
+• It is raining
+• Every man is mortal
+• These statements are called axioms
+
+** OWL 2 Ontology
+• is a collection of axioms
+–ontology asserts that its axioms are
+true
+
+** In OWL 2
+• Objects as individuals
+• Categories as classes
+• Relations as properties
+• Note: A class is a name and collection of
+properties that describe a set of
+individuals
+
+** OWL statements
+• Made up of atomic statements
+– Mary is female
+– John and Mary are married
+• Objects: Mary, John
+• Categories: female
+• Relations: married
+• All atomic constituents are called entities

@@ -7,23 +7,20 @@ A system of interlinked, hypertext documents that runs over the Internet. Inform
 -  Suitable for human
 - Web of documents connected by anchors
 + Uniform Resource Identifiers (URI) are used for documents and anchors
-
-Underlying the Web is a set of messages that developers of web infrastructure have agreed to treat in a standard manner.
-When a web server speaking HTTP receives a GET request, it should send back data corresponding to the path portion of the
-request message. The semantics of these messages have been thoroughly defined by standards committees and documented in W3C recommendations.
-
-This standardized infrastructure allows web application developers to operate behind a facade that separates them from
-the details of how application data is transmitted between machines, and focus on how their applications appear to users.
-
-Web application developers no longer need to coordinate with other developers about message formats or how applications
-should behave in the presence of certain data.
++ Underlying the Web is a set of messages that developers of web infrastructure have agreed to treat in a standard manner.
+  - When a web server speaking HTTP receives a GET request, it should send back data corresponding to the path portion of the request message. The semantics of these messages have been thoroughly defined by standards committees and documented in W3C recommendations.
+  - This standardized infrastructure allows web application developers to operate behind a facade that separates them from the details of how application data is transmitted between machines, and focus on how their applications appear to users.
+  - Web application developers no longer need to coordinate with other developers about message formats or how applications should behave in the presence of certain data.
 
 *** Basic Ideas
 - Hypertext/hyperlink
 - Resource Identifiers
-+ Uniform Resource Identifiers (URIs) are short strings that identify resources in the web: documents, images, downloadable files, services, electronic mailboxes, and other resources.
+  + Uniform Resource Identifiers (URIs) are short strings that identify resources in the web: documents, images, downloadable files, services, electronic mailboxes, and other resources.
 - Markup language
 + characters or codes embedded in text which indicate structure, semantic meaning, or advice on presentation
+
+The current (syntactic / structural) Web
+[[.img/currentSyntacticStructuralWeb.png]]
 
 ** Social Web (Web 2.0)
 The Web where “ordinary” users can meet, collaborate, and share using social software applications on the Web (tagged content, social bookmarking, AJAX, etc.)

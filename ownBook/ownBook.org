@@ -22,28 +22,46 @@ A system of interlinked, hypertext documents that runs over the Internet. Inform
 The current (syntactic / structural) Web
 [[./img/currentSyntacticStructuralWeb.png]]
 
+Was the Web meant to be more?
+[[./img/wasStructuralWeb.png]]
+
+
 ** Social Web (Web 2.0)
 The Web where “ordinary” users can meet, collaborate, and share using social software applications on the Web (tagged content, social bookmarking, AJAX, etc.)
+[[./img/web2.0.png]]
 
 ** Semantic Web – Web 3.0
-   Tim Berners-Lee has a vision of a Semantic Web which has machine-understandable semantics of information, and millions of small specialized reasoning services that provide support in automated task achievement based on the accessible information
+Tim Berners-Lee has a vision of a Semantic Web which has machine-understandable semantics of information, and millions of small specialized reasoning services that provide support in automated task achievement based on the accessible information
 
 ** Ontology
-The semantic Web is essentially based on ontologies, which are formal and consensual specifications of conceptualizations... (e.g. by OO Models, or Entity Relationship model)
-Providing a shared and common understanding of a domain that can be communicated across people and application systems (not application specific, but consensual for a domain)
+The semantic Web is essentially based on ontologies.
+ - ontologies are formal and consensual specifications of conceptualizations... (e.g. by OO Models, or Entity Relationship model)
+ - Providing a shared and common understanding of a domain that can be communicated across people and application systems (not application specific, but consensual for a domain)
+[[./img/simpleOntology.png]]
+
 Ontologies describe concepts and their Relations.
 
-** What is Semantic Web for?
-Integrating - trying to solve the problem of data and service integration
-Searching - Providing better communication between human and computers by adding machine-processable semantics to data.
+Semantic Web - language tower
+[[./img/LanguageTower.png]]
 
-** Describing Web Resources: RDF
-*** Resource Description Framework
+** What is Semantic Web for?
+ - Integrating - trying to solve the problem of data and service integration.
+ - Searching - Providing better communication between human and computers by adding machine-processable semantics to data.
+
+Semantic Integration
+[[./img/semanticIntegration.png]]
+
+Semantic Searching
+[[./img/semanticSearching.png]]
+
+* Describing Web Resources: RDF
+** Resource Description Framework
 – A framework for representing information about resources in the Web
 – Intended for situations in which information needs to be processed by applications (machine)
-*** RDF graphs
+** RDF graphs
 – Are sets of subject‐predicate‐object triples, where elements may be IRIs, blank nodes or datatyped literals.
-*** comparing data models
+
+** comparing data models
 | Model        | Example format | Data                 | Metadate     | Identifier                      | Query syntax | Semantics (Meaning)              |   |   |   |   |   |   |   |
 |--------------+----------------+----------------------+--------------+---------------------------------+--------------+----------------------------------+---+---+---+---+---+---+---|
 | Relational   | Mysql, Oracle  | Table Cell values    | Table Column | Primary key (Data Column) value | SQL          | n/a                              |   |   |   |   |   |   |   |
@@ -58,7 +76,10 @@ Searching - Providing better communication between human and computers by adding
 – Predicate denotes a relationship
 – Direction of arc is significant
 + Always point to the object
-[[./img/graphBasedModel.jpg}]
+
+[[./img/graphBasedModel.jpg]]
+
+[[./img/graphModelExample.png]]
 
 URIrefs are shown as ellipses
 Literals are shown as boxs
@@ -67,35 +88,55 @@ Literals are shown as boxs
 * Triples
 RDF triple has the following structure: <subject> <predicate> <object>
 
-The subject - which is an RDF URI reference or a blank node
+** Example 1
+John is the creator of the web page http://www.uow.edu.au/~john
 
-The predicate (also called property) - which is an RDF URI reference
+– Subject (resource)
+ + http://www.uow.edu.au/~john
+– Predicate (property)
+ + http://purl.org/dc/terms/creator
+– Object (Literal)
+ + John
 
-The object - which is an RDF URI reference, a literal or a blank node
+- URIrefs are shown as ellipses
+- Literals are shown as boxes
+
+[[./img/triplesExampleOne/png]]
+
+** example 2 (with blank node)
+[[./img/blankNodeExample.png]]
+
+** Summary
+An RDF triple contains three components:
+- The subject - which is an RDF URI reference or a blank node
+- The predicate (also called property) - which is an RDF URI reference
+- The object - which is an RDF URI reference, a literal or a blank node
+
+Written in the order subject,predicate,object.
 
 * Three kinds of nodes in RDF graph
 ** IRI (Internationalized Resource Identifier)
-Can appear in all three positions of a triple
-Are global identifiers and reusable
-- so other people can re-use the IRI to identify the same thing
-IRI is a generalisation of URI
-URL is a form of IRI
+ - Can appear in all three positions of a triple
+ - Are global identifiers and reusable
+   + so other people can re-use the IRI to identify the same thing
+ - IRI is a generalisation of URI
+ - URL is a form of IRI
+
 ** Literals
-Basic values that are not IRIs
-Onlu appear in object position of a triple
-Literals have datatypes that define range of possible
-value: strings, numbers, dates
-Can be associated with a datatype
-- RDF re-uses many of the XML Schema built-in datatypes
+ - Basic values that are not IRIs
+ - Only appear in object position of a triple
+ - Literals have datatypes that define range of possible value: strings, numbers, dates
+ - Can be associated with a datatype
+   + RDF re-uses many of the XML Schema built-in datatypes
 
 ** Blank nodes
-Denote resources without explicitly naming them with IRIs
-Can appear in the subject or object position of a trople
-Blank nodes do not identify specific resources
+- Denote resources without explicitly naming them with IRIs.
+- Can appear in the subject or object position of a trople.
+- Blank nodes do not identify specific resources.
 
 **  RDF Vocabularies
-To support the definition of vocabularies RDF provides the RDF Schema language
-This language allows one to define semantic characteristics of RDF data.
+- To support the definition of vocabularies RDF provides the RDF Schema language.
+- This language allows one to define semantic characteristics of RDF data.
 
 The main modeling constructs provided by RDF Schema are summarized in the table below:
 
@@ -128,6 +169,8 @@ RDF Schema Constructs
 
 N-Triples
 - A line-based, plain text format for encoding an RDF graph.
+
+N-Triples triples are a sequence of RDF terms representing the subject, predicate and object of an RDF Triple. These may be separated by white space (spaces U+0020 or tabs U+0009). This sequence is terminated by a '.' and a new line (optional at the end of a document).
 * Turtle
 - An extension of N-Triples
 - Turtle introduces a number of syntactic shortcuts, such as support for namespace prefixes, list and shorthands for detatyped literals.
@@ -148,59 +191,71 @@ The content of the element is a number of descriptions which use rdf:Description
   <s:Creator>Ora Lassila</s:Creator>
   </rdf:Description>
 </rdf:RDF>
+
 ** Complete XML
 <?xml version="1.0"?>
 <rdf:RDF
-xmlns:rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#
-xmlns:s="http://description.org/schema/">
-<rdf:Description
-about="http://www.w3.org/Home/Lassila">
-<s:Creator>Ora Lassila</s:Creator>
-</rdf:Description>
+   xmlns:rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#
+   xmlns:s="http://description.org/schema/">
+   <rdf:Description about="http://www.w3.org/Home/Lassila">
+      <s:Creator>Ora Lassila</s:Creator>
+   </rdf:Description>
 </rdf:RDF>
 
 * Description element
   - The Description element names, in an about attribute, the resource to which each of the statements apply.
   - If the resource does not yet exist (i.e., does not yet have a resource identifier) then a Description element can supply the identifier for the resource using an ID attribute.
+
 * Declaring the use of RDF
 It is necessary to declare that RDF is being used so that applications can recognise this is an RDF/XML document.
 
 ** Example
 <?xml version="1.0"?>
-<!DOCTYPE rdf:RDF PUBLIC "-//DUBLIN CORE//DCMES DTD
-2002/07/31//EN“
-"http://dublincore.org/documents/2002/07/31/dcmesxml/dcmes-xml-dtd.dtd">
+<!DOCTYPE rdf:RDF PUBLIC "-//DUBLIN CORE//DCMES DTD 2002/07/31//EN" "http://dublincore.org/documents/2002/07/31/dcmesxml/dcmes-xml-dtd.dtd">
 <rdf:RDF
-xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-xmlns:dc="http://purl.org/dc/elements/1.1/">
-<rdf:Description
-rdf:about="http://www.ilrt.bristol.ac.uk/people/cmdjb/">
-<dc:title>Dave Beckett's Home Page</dc:title>
-<dc:creator>Dave Beckett</dc:creator>
-<dc:publisher>ILRT, University of
-Bristol</dc:publisher>
-<dc:date>2002-07-31</dc:date>
-</rdf:Description>
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+   <rdf:Description rdf:about="http://www.ilrt.bristol.ac.uk/people/cmdjb/">
+      <dc:title>Dave Beckett's Home Page</dc:title>
+      <dc:creator>Dave Beckett</dc:creator>
+      <dc:publisher>ILRT, University of Bristol</dc:publisher>
+      <dc:date>2002-07-31</dc:date>
+   </rdf:Description>
 </rdf:RDF>
 
 * RDF/XML
-• RDF document represented by XML statement with the tag rdf:RDF
-• It is necessary to declare that RDF is being used so that applications can recognise this is an RDF/XML document.
-• The content of the element is a number of descriptions which use rdf:Description tags
-– Every description is a statement about a resource
-• An about attribute, referencing an existing resource
-• An ID attribute, creating a new resource
-• Without a name, creating an anonymous resource
-
+- RDF document represented by XML statement with the tag rdf:RDF
+- It is necessary to declare that RDF is being used so that applications can recognise this is an RDF/XML document.
+- The content of the element is a number of descriptions which use rdf:Description tags
+ + Every description is a statement about a resource
+  - An about attribute, referencing an existing resource
+  - An ID attribute, creating a new resource
+  - Without a name, creating an anonymous resource
+** Example 1
 <?xml version="1.0"?>
 <rdf:RDF
-xmlns:rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#
-xmlns:s="http://description.org/schema/">
-<rdf:Description
-about="http://www.w3.org/Home/Lassila">
-<s:Creator>Ora Lassila</s:Creator>
+   xmlns:rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#
+   xmlns:s="http://description.org/schema/">
+   <rdf:Description about="http://www.w3.org/Home/Lassila">
+      <s:Creator>Ora Lassila</s:Creator>
+   </rdf:Description>
+</rdf:RDF>
+** Example 2
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22‐rdf‐syntax‐ ns#"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:ex="http://example.org/">
+<rdf:Description rdf:about="http://www.w3.org/TR/rdf‐syntax‐ grammar" dc:title="RDF 1.1 XML Syntax">
+   <ex:editor>
+      <rdf:Description ex:fullName="Dave Beckett">
+         <ex:homePage rdf:resource="http://purl.org/net/dajobe/"/>
+      </rdf:Description>
+   </ex:editor>
 </rdf:Description>
 </rdf:RDF>
+
+[[./img/RDFexample2.png]]
 
 * Containers
 • refer to a collection of resources

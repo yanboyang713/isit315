@@ -255,36 +255,54 @@ It is necessary to declare that RDF is being used so that applications can recog
 </rdf:Description>
 </rdf:RDF>
 
+
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22‐rdf‐syntax‐ns#"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:ex="http://example.org/">
+   <rdf:Description rdf:about="http://www.w3.org/TR/rdf‐syntax‐grammar">
+      <ex:editor>
+          <rdf:Description>
+             <ex:homePage>
+                <rdf:Description rdf:about="http://purl.org/net/dajobe/"></rdf:Description>
+             </ex:homePage>
+             <ex:fullName>Dave Beckett</ex:fullName>
+          </rdf:Description>
+      </ex:editor>
+      <dc:title>RDF 1.1 XML Syntax</dc:title>
+   </rdf:Description>
+</rdf:RDF>
+
 [[./img/RDFexample2.png]]
 
 * Containers
-• refer to a collection of resources
-– e.g. a list of students
-• three types of container objects
-– Bag (rdf: Bag)
-– Sequence (rdf: Seq )
-– Alternative (rdf: Alt)
-• Therefore the rdfs:Container class is a super‐class of rdf:Bag, rdf:Seq, rdf:Alt
++ refer to a collection of resources
+  – e.g. a list of students
++ three types of container objects
+  – Bag (rdf: Bag)
+  – Sequence (rdf: Seq )
+  – Alternative (rdf: Alt)
++ Therefore the rdfs:Container class is a super‐class of rdf:Bag, rdf:Seq, rdf:Alt
 
 ** rdf:Bag
-• an unordered list of resources or literals
-• to declare a property with multiple values and there is no significance to the order in which the values are given
-• e.g.
-– a list of part numbers where order of processing is unimportant, duplicate values are permitted
++ an unordered list of resources or literals
++ to declare a property with multiple values and there is no significance to the order in which the values are given.
+  - e.g. a list of part numbers where order of processing is unimportant, duplicate values are permitted
 
 [./img/containerBag.jpg]
 
-*** example A list of favourite fruits: banana, apple
-and pear
+*** example A list of favourite fruits: banana, apple and pear
+#+BEGIN_SRC XML
 <?xml version="1.0"?>
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-<rdf:Bag rdf:about="http://example.org/favourite-fruit">
-<rdf:_1 rdf:resource="http://example.org/banana"/>
-<rdf:_2 rdf:resource="http://example.org/apple"/>
-<rdf:_3 rdf:resource="http://example.org/pear"/>
-</rdf:Seq>
-</rdf:RDF>
 
+   <rdf:Bag rdf:about="http://example.org/favourite-fruit">
+      <rdf:_1 rdf:resource="http://example.org/banana"/>
+      <rdf:_2 rdf:resource="http://example.org/apple"/>
+      <rdf:_3 rdf:resource="http://example.org/pear"/>
+   </rdf:Seq>
+</rdf:RDF>
+#+END_SRC
 ** rdf:Seq
 • an ordered list of resources or literals
 • to declare a property with multiple values and order of the values is significant

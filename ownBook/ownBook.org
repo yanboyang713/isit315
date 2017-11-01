@@ -20,7 +20,7 @@ A system of interlinked, hypertext documents that runs over the Internet. Inform
 + characters or codes embedded in text which indicate structure, semantic meaning, or advice on presentation
 
 The current (syntactic / structural) Web
-[[.img/currentSyntacticStructuralWeb.png]]
+[[./img/currentSyntacticStructuralWeb.png]]
 
 ** Social Web (Web 2.0)
 The Web where “ordinary” users can meet, collaborate, and share using social software applications on the Web (tagged content, social bookmarking, AJAX, etc.)

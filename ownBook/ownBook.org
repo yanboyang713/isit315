@@ -810,14 +810,13 @@ If a properties is inverse functional it means the inverse property is functiona
 – From this a reasoner may deduce that any particular EmployedPerson has at least one employer
 
 * Ontology
-• Formalized vocabularies of terms, often
-covering a specific domain and shared by a
-community of users.
-– They specify the definitions of terms by describing
-their relationships with other terms in the
-ontology.
-• An ontology is a set of precise descriptive
-statements about some part of the world
++ Formalized vocabularies of terms, often covering a specific domain and shared by a community of users.
+  – They specify the definitions of terms by describing their relationships with other terms in the ontology.
++ An ontology is a set of precise descriptive statements about some part of the world.
+
+** Structure of OWL 2
+
+[[./img/StructureOfOWL2.png]]
 
 ** Different Syntaxes
 | Name of Syntax    | Specification                  | Status                    | Purpose                                                                |
@@ -826,224 +825,217 @@ statements about some part of the world
 | OWL/XML           | XML Serialization              | Optional                  | Easier to process using XML tools                                      |
 | Functional Syntax | Structural Specification       | Optional                  | Easier to see the formal structure of ontologies                       |
 | Manchester Syntax | Manchester Syntax              | Optional                  | Easier to read/write DL Ontologies                                     |
-| Turtle            | Mapping to RDF Graphs, Turtle  | Optional, Not from OWL-WG | Easier to read/write RDF triples                                                   |
+| Turtle            | Mapping to RDF Graphs, Turtle  | Optional, Not from OWL-WG | Easier to read/write RDF triples                                       |
 
 ** OWL Syntax
-• An OWL ontology is an RDF graph  a set of
-RDF triples
-– The meaning of an OWL ontology is solely
-determined by RDF graph
-• OWL is a vocabulary extension of RDF
-• The built-in vocabulary for OWL comes from
-OWL namespace
-owl: http://www.w3.org/2002/07/owl#
++ An OWL ontology is an RDF graph -> a set of RDF triples
+ – The meaning of an OWL ontology is solely determined by RDF graph
++ OWL is a vocabulary extension of RDF
++ The built-in vocabulary for OWL comes from OWL namespace owl: http://www.w3.org/2002/07/owl#
 
 ** OWL 2: Modeling knowledge
-• OWL 2 is a knowledge representation knowledge,
-designed to formulate, exchange and reason with
-knowledge about a domain of interest.
-• Basic notions:
-– Axioms: the basic statements that an OWL ontology
-expresses
-– Entities: elements used to refer to real-world objects
-– Expressions: combinations of entities to form complex
-descriptions from basic ones
++ OWL 2 is a knowledge representation knowledge, designed to formulate, exchange and reason with knowledge about a domain of interest.
++ Basic notions:
+ – Axioms: the basic statements that an OWL ontology expresses
+ – Entities: elements used to refer to real-world objects
+ – Expressions: combinations of entities to form complex descriptions from basic ones
 
 ** To formulate knowledge explicitly
-• Ontology consists of statements (or
-propositions)
-– Example of statements
-• It is raining
-• Every man is mortal
-• These statements are called axioms
++ Ontology consists of statements (or propositions)
+ – Example of statements
+  + It is raining
+  + Every man is mortal
++ These statements are called axioms
 
 ** OWL 2 Ontology
-• is a collection of axioms
-–ontology asserts that its axioms are
-true
++ is a collection of axioms
+ - ontology asserts that its axioms are true
 
 ** In OWL 2
-• Objects as individuals
-• Categories as classes
-• Relations as properties
-• Note: A class is a name and collection of
-properties that describe a set of
-individuals
++ Objects as individuals
++ Categories as classes
++ Relations as properties
++ Note: A class is a name and collection of properties that describe a set of individuals
 
 ** OWL statements
-• Made up of atomic statements
-– Mary is female
-– John and Mary are married
-• Objects: Mary, John
-• Categories: female
-• Relations: married
-• All atomic constituents are called entities
++ Made up of atomic statements
+ – Mary is female
+ - John and Mary are married
++ Objects: Mary, John
++ Categories: female
++ Relations: married
++ All atomic constituents are called entities
 
 ** Properties in OWL 2
-• Object properties relate objects to objects
-– A person to their spouse
-• Datatype properties assign data values to
-objects
-– An age to a person.
-• Annotation properties are used to encode
-information about the ontology itself
-– Author and creation date
++ Object properties relate objects to objects
+ – A person to their spouse
++ Datatype properties assign data values to objects
+ – An age to a person.
++ Annotation properties are used to encode information about the ontology itself
+ – Author and creation date
 
 ** Constructors
-• Names of entities can be combined into
-expressions using constructors
-– atomic classes:
-• female, professor
-– combined conjunctively to form class expressions
-• female professors
-• This way, expressions = new entities
++ Names of entities can be combined into expressions using constructors
+ – atomic classes: female, professor
+ - combined conjunctively to form class expressions: female professors
++ This way, expressions = new entities
 
 ** Functional-Style syntax
-• is designed to be easier for specification
-purposes and to provide a foundation for the
-implementation of OWL 2 tools such as APIs
-and reasoners.
++ is designed to be easier for specification purposes and to provide a foundation for the implementation of OWL 2 tools such as APIs and reasoners.
 
 ** ClassAssertion
-• Functional-style syntax
-ClassAssertion( :Person :Mary )
-• RDF/XML syntax
-<Person rdf:about="Mary"/>
-• Mary belongs to the class of all Persons
-• Note: one individual can belong to many
-classes simultaneously
-ClassAssertion( :Woman :Mary )
++ Functional-style syntax -> ClassAssertion( :Person :Mary )
++ RDF/XML syntax -> <Person rdf:about="Mary"/>
++ Mary belongs to the class of all Persons
++ Note: one individual can belong to many classes simultaneously ClassAssertion( :Woman :Mary )
 
 ** Class Hierarchies
-• Functional-style syntax
-SubClassOf( :Woman :Person)
-• RDF/XML syntax
++ Functional-style syntax -> SubClassOf( :Woman :Person)
++ RDF/XML syntax
+#+BEGIN_SRC xml
 <owl:Class rdf:about="Woman">
-<rdfs:subClassOf
-rdf:resource="Person"/>
+   <rdfs:subClassOf rdf:resource="Person"/>
 </owl:Class>
-• able to specify generalization relationships of
-all classes
+#+END_SRC
++ able to specify generalization relationships of all classes
 
 ** Equivalent Class
-• Functional-style syntax
-EquivalentClasses( :Person :Human)
-• RDF/XML syntax
++ Functional-style syntax -> EquivalentClasses( :Person :Human)
++ RDF/XML syntax
+#+BEGIN_SRC xml
 <owl:Class rdf:about="Person">
-<owl:equivalentClass rdf:resource="Human"/>
+   <owl:equivalentClass rdf:resource="Human"/>
 </owl:Class>
+#+END_SRC
 
 ** Disjoint Class
-• Functional-style syntax
-DisjointClasses( :Woman :Man)
-• RDF/XML syntax
++ Functional-style syntax -> DisjointClasses( :Woman :Man)
++ RDF/XML syntax
+#+BEGIN_SRC xml
 <owl:AllDisjointClasses>
-<owl:members rdf:parseType="Collection">
-<owl:Class rdf:about="Woman"/>
-<owl:Class rdf:about="Man"/>
-</owl:members>
+   <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="Woman"/>
+      <owl:Class rdf:about="Man"/>
+   </owl:members>
 </owl:AllDisjointClasses>
+#+END_SRC
 
 ** Inferencing Example
-• The disjointness axiom can be used to deduce
-– Mary is not a Man
-– Mother and Man are disjoint
++ The disjointness axiom can be used to deduce
+ – Mary is not a Man
+ – Mother and Man are disjoint
 
 ** Object properties
-• Functional-style syntax
-ObjectPropertyAssertion(:hasWife :John :Mary)
-• RDF/XML syntax
++ Functional-style syntax -> ObjectPropertyAssertion(:hasWife :John :Mary)
++ RDF/XML syntax
+#+BEGIN_SRC xml
 <rdf:Description rdf:about="John">
-<hasWife rdf:resource="Mary"/>
+   <hasWife rdf:resource="Mary"/>
 </rdf:Description>
+#+END_SRC
 
 ** Negative Property
-• Functional-style syntax
-NegativeObjectPropertyAssertion(:hasWife :B
-ill :Mary)
-• RDF/XML syntax
++ Functional-style syntax -> NegativeObjectPropertyAssertion(:hasWife :Bill :Mary)
++ RDF/XML syntax
+#+BEGIN_SRC xml
 <owl:NegativePropertyAssertion>
-<owl:sourceIndividual rdf:resource="Bill"/>
-<owl:assertionProperty rdf:resource="hasWife"/>
-<owl:targetIndividual rdf:resource="Mary"/>
+   <owl:sourceIndividual rdf:resource="Bill"/>
+   <owl:assertionProperty rdf:resource="hasWife"/>
+   <owl:targetIndividual rdf:resource="Mary"/>
 </owl:NegativePropertyAssertion>
+#+END_SRC
 
 ** Property Hierarchies
-• Functional-style syntax
-SubObjectPropertyOf(:hasWife :hasSpouce)
-• RDF/XML syntax
++ Functional-style syntax -> SubObjectPropertyOf(:hasWife :hasSpouce)
++ RDF/XML syntax
+#+BEGIN_SRC xml
 <owl:ObjectProperty rdf:about="hasWife">
-<rdfs:subPropertyOf rdf:resource="hasSpouse"/>
+   <rdfs:subPropertyOf rdf:resource="hasSpouse"/>
 </owl:ObjectProperty>
-
+#+END_SRC
 
 ** Domain and Range restrictions
-• Functional-style syntax
-ObjectPropertyDomain(:hasWife :Man)
-ObjectPropertyRange(:hasWife :Woman)
-• RDF/XML syntax
++ Functional-style syntax -> ObjectPropertyDomain(:hasWife :Man) --- ObjectPropertyRange(:hasWife :Woman)
++ RDF/XML syntax
+#+BEGIN_SRC xml
 <owl:ObjectProperty rdf:about="hasWife">
-<rdfs:domain rdf:resource="Man"/>
-<rdfs:range rdf:resource="Woman"/>
+   <rdfs:domain rdf:resource="Man"/>
+   <rdfs:range rdf:resource="Woman"/>
 </owl:ObjectProperty>
+#+END_SRC
 
 ** Equality and Inequality of individuals
-• Functional-style syntax
-DifferentIndividuals(:John :Bill)
-SameIndividuals(:James :Jim)
-• RDF/XML syntax
++ Functional-style syntax
+ - DifferentIndividuals(:John :Bill)
+ - SameIndividuals(:James :Jim)
+
++ RDF/XML syntax
+#+BEGIN_SRC xml
 <rdf:Description rdf:about="John">
-<owl:differentFrom rdf:resource="Bill"/>
+   <owl:differentFrom rdf:resource="Bill"/>
 </rdf:Description>
+
 <rdf:Description rdf:about="James">
-<owl:sameAs rdf:resource="Jim"/>
+   <owl:sameAs rdf:resource="Jim"/>
 </rdf:Description>
+#+END_SRC
 
 ** Datatypes
-• Relates individuals to data values
-• Use XML schema datatypes
-• Functional-style syntax
-DataPropertyAssertion(:hasAge :John “51”^^xsd:integer)
-• RDF/XML syntax
++ Relates individuals to data values
++ Use XML schema datatypes
++ Functional-style syntax
+ - DataPropertyAssertion(:hasAge :John “51”^^xsd:integer)
+
++ RDF/XML syntax
+#+BEGIN_SRC xml
 <Person rdf:about="John">
-<hasAge
-rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">51<
-/hasAge>
+   <hasAge
+      rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">51<
+   /hasAge>
 </Person>
+#+END_SRC
 
 ** NegativeDataPropertyAssertion
-• Functional-style syntax
-NegativeDataPropertyAssertion( :hasAge :Jack
-"53"^^xsd:integer )
-• RDF/XML syntax
++ Functional-style syntax -> NegativeDataPropertyAssertion( :hasAge :Jack "53"^^xsd:integer )
++ RDF/XML syntax
+#+BEGIN_SRC xml
 <owl:NegativePropertyAssertion>
 <owl:sourceIndividual rdf:resource="Jack"/>
 <owl:assertionProperty rdf:resource="hasAge"/>
 <owl:targetValue
-rdf:datatype="http://www.w3.org/2001/XMLSchema#in
-teger"> 53
+   rdf:datatype="http://www.w3.org/2001/XMLSchema#integer"> 53
 </owl:targetValue>
 </owl:NegativePropertyAssertion>
+#+END_SRC
 
 ** Complex classes
-• EquivalentClasses(
-:Mother
-ObjectIntersectionOf(:Woman:Parent)
++
+#+BEGIN_SRC xml
+EquivalentClasses(
+   :Mother
+   ObjectIntersectionOf(:Woman:Parent)
 )
-• EquivalentClasses(
-:Parent
-ObjectUnionOf( :Mother :Father )
+#+END_SRC
++
+#+BEGIN_SRC xml
+EquivalentClasses(
+   :Parent
+   ObjectUnionOf( :Mother :Father )
 )
-• EquivalentClasses(
-:ChildlessPerson
-ObjectIntersectionOf(
-:Person
-ObjectComplementOf( :Parent )
+#+END_SRC
++
+#+BEGIN_SRC xml
+EquivalentClasses(
+   :ChildlessPerson
+   ObjectIntersectionOf(
+      :Person
+      ObjectComplementOf( :Parent )
+   )
 )
-)
+#+END_SRC
 
 ** Property restrictions
-• Use constructors involving properties
++ Use constructors involving properties
 • Existential quantification
 – Defines a class as the set of all individuals that are
 connected via a particular property to another individual

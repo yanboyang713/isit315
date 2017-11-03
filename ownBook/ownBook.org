@@ -1036,63 +1036,61 @@ EquivalentClasses(
 
 ** Property restrictions
 + Use constructors involving properties
-• Existential quantification
-– Defines a class as the set of all individuals that are
-connected via a particular property to another individual
-which is an instance of a certain class.
-• Natural language indicators for the usage of existential
-quantification are words like “some,” or “one.”
-• Universal quantification
-– Describe a class of individuals for which all related
-individuals must be instances of a given class.
-• Natural language indicators for the usage of universal
-quantification are words like “only,” “exclusively,” or “nothing but.”
++ Existential quantification
+ – Defines a class as the set of all individuals that are connected via a particular property to another individual which is an instance of a certain class.
+   + Natural language indicators for the usage of existential quantification are words like “some,” or “one.”
+
++ Universal quantification
+ – Describe a class of individuals for which all related individuals must be instances of a given class.
+  + Natural language indicators for the usage of universal quantification are words like “only,” “exclusively,” or “nothing but.”
 
 *** Existential quantification
-• For every instance of Parent, there exists at
-least one child, and that child is a member of
-the class Person.
+• For every instance of Parent, there exists at least one child, and that child is a member of the class Person.
+#+BEGIN_SRC xml
 EquivalentClasses(
-:Parent
-ObjectSomeValuesFrom( :hasChild :Person )
+   :Parent
+   ObjectSomeValuesFrom( :hasChild :Person )
 )
+#+END_SRC
 
-** Universal quantification
-Somebody is a happy person exactly if all their
-children are happy persons
+*** Universal quantification
++ Somebody is a happy person exactly if all their children are happy persons
+#+BEGIN_SRC xml
 EquivalentClasses(
-:HappyPerson
-ObjectAllValuesFrom( :hasChild
-:HappyPerson )
+   :HappyPerson
+   ObjectAllValuesFrom( :hasChild :HappyPerson )
 )
-
+#+END_SRC
 
 ** Property Cardinality Restrictions
-• To specify the number of individuals involved
-in the restriction
++ To specify the number of individuals involved in the restriction
+#+BEGIN_SRC xml
+ClassAssertion(
+   ObjectMaxCardinality( 4 :hasChild :Parent)
+   :John
+)
 
 ClassAssertion(
-ObjectMaxCardinality( 4 :hasChild :Parent)
-:John
+   ObjectMinCardinality( 2 :hasChild :Parent)
+   :John
 )
+
 ClassAssertion(
-ObjectMinCardinality( 2 :hasChild :Parent)
-:John
+   ObjectExactCardinality( 2 :hasChild :Parent)
+   :John
 )
-ClassAssertion(
-ObjectExactCardinality( 2 :hasChild :Parent)
-:John
-)
+#+END_SRC
 
 ** Enumeration of Individuals
+#+BEGIN_SRC xml
 EquivalentClasses(
-:MyBirthdayGuests
-ObjectOneOf( :Bill :John :Mary)
+   :MyBirthdayGuests
+   ObjectOneOf( :Bill :John :Mary)
 )
-• Classes defined this way are sometimes referred to
-as closed classes or enumerated sets
-– Bill, John, and Mary are the only members of
-MyBirthdayGuests
+#+END_SRC
+
++ Classes defined this way are sometimes referred to as closed classes or enumerated sets
+– Bill, John, and Mary are the only members of MyBirthdayGuests
 
 ** Advanced property characteristics
 InverseObjectProperties( :hasParent :hasChild )
@@ -1106,98 +1104,572 @@ InverseFunctionalObjectProperty( :hasHusband )
 TransitiveObjectProperty( :hasAncestor )
 
 ** Property chains
+#+BEGIN_SRC xml
 SubObjectPropertyOf(
-ObjectPropertyChain( :hasParent :hasParent
+   ObjectPropertyChain( :hasParent :hasParent)
+   :hasGrandparent
 )
-:hasGrandparent
-)
-• Enable hasGrandparent property to be
-defined more specific
-• hasGrandparent connects all individuals that
-are linked by a chain of exactly two hasParent
-properties
+#+END_SRC
++ Enable hasGrandparent property to be defined more specific
++ hasGrandparent connects all individuals that are linked by a chain of exactly two hasParent properties
 
 ** Keys
-• Each named instance of the class expressions
-is uniquely identified by a set of values
++ Each named instance of the class expressions is uniquely identified by a set of values
 HasKey( :Person () ( :hasSSN ) )
 
 ** Advanced Use of Datatypes
+#+BEGIN_SRC xml
 DatatypeDefinition(
-:personAge
-DatatypeRestriction( xsd:integer
-xsd:minInclusive "0"^^xsd:integer
-xsd:maxInclusive "150"^^xsd:integer
+   :personAge
+   DatatypeRestriction( xsd:integer
+   xsd:minInclusive "0"^^xsd:integer
+   xsd:maxInclusive "150"^^xsd:integer)
 )
-)
+#+END_SRC
+
 *** Another example
+#+BEGIN_SRC xml
 DatatypeDefinition(
-:toddlerAge DataOneOf(
-"1"^^xsd:integer
-"2"^^xsd:integer )
+   :toddlerAge DataOneOf(
+      "1"^^xsd:integer
+      "2"^^xsd:integer )
 )
+#+END_SRC
 
 ** Annotations
-• Functional-style syntax
-AnnotationAssertion( rdfs:comment :Person
-"Represents the set of all people." )
-• RDF/XML syntax
++ Functional-style syntax
+AnnotationAssertion( rdfs:comment :Person "Represents the set of all people." )
++ RDF/XML syntax
+#+BEGIN_SRC xml
 <owl:Class rdf:about="Person">
-<rdfs:comment>Represents the set of all
-people.</rdfs:comment>
+   <rdfs:comment>Represents the set of all people.</rdfs:comment>
 </owl:Class>
-
-** References
-• https://www.w3.org/TR/owl2-primer/
-• Refer to the above document for other
-syntaxes
+#+END_SRC
 
 ** How is ontology different from XML or XML Schema
-• OWL Ontology  knowledge representation
-• XML/XMLSchema  message format
-• Most industry based web standards consist of
-a combination of message formats and
-protocol specifications  operational
-semantics
-• OWL 2 does not provide means to prescribe
-how a document should be structured
-syntactically
++ OWL Ontology -> knowledge representation
++ XML/XMLSchema -> message format
++ Most industry based web standards consist of a combination of message formats and protocol specifications -> operational semantics
++ OWL 2 does not provide means to prescribe how a document should be structured syntactically
 
 ** Consider the following example
-• Upon receipt of this PurchaseOrder
-message, transfer Amount dollars from
-AccountFrom to AccountTo and ship
-Product
-• This specification is not designed to support
-reasoning outside the transaction context, e.g.
-Product is a type of Chardonnay therefore it
-must be a white wine.
++ Upon receipt of this PurchaseOrder message, transfer Amount dollars from AccountFrom to AccountTo and ship Product
++ This specification is not designed to support reasoning outside the transaction context, e.g. Product is a type of Chardonnay therefore it must be a white wine.
 
 ** Advantage of OWL ontologies
-• Availability of reasoning tools that provide
-generic support that is not specific to the
-particular subject domain
-• Note: building a sound and useful reasoning
-system is not a simple effort.
-•
++ Availability of reasoning tools that provide generic support that is not specific to the particular subject domain
++ Note: building a sound and useful reasoning system is not a simple effort.
 
 ** Considerations
-• Must consider which species of OWL (OWL Lite,
-OWL DL or OWL Full) meet their needs
-• OWL Lite vs. OWL DL
-– Depends on the extent to which users require the
-more expressive restriction constructs provided by
-OWL DL
-• OWL DL vs. OWL Full
-– Depends on the extent to which users require metamodelling facilities of RDF Schema (i.e. defining
-classes of classes).
-• Reasoning support for OWL Full is less predicatable
++ Must consider which species of OWL (OWL Lite, OWL DL or OWL Full) meet their needs
++ OWL Lite vs. OWL DL
+ – Depends on the extent to which users require the more expressive restriction constructs provided by OWL DL
++ OWL DL vs. OWL Full
+– Depends on the extent to which users require metamodelling facilities of RDF Schema (i.e. defining classes of classes).
+ + Reasoning support for OWL Full is less predicatable
 
 ** OWL 2 vs. Database
-• Closed-world assumption
-– If some fact is not present in the database, it is
-usually considered to be FALSE
-• Open-world assumption
-– If some fact is not present in ontology (OWL 2
-document) it may simply be missing (but possibly
-true)
++ Closed-world assumption
+ – If some fact is not present in the database, it is usually considered to be FALSE
++ Open-world assumption
+ – If some fact is not present in ontology (OWL 2 document) it may simply be missing (but possibly true)
+
+* SPARQL
+** SPARQL Basic Queries
++ SPARQL is based on matching graph patterns
++ Most forms of SPARQL query contain a set of triple patterns called a basic graph pattern
++ Each of the subject, predicate and object may be a variable
+
+** Example 1
+*** Given the following triple
+#+BEGIN_SRC xml
+<http://example.org/book/book1>
+<http://purl.org/dc/elements/1.1/title>
+"SPARQL Tutorial" .
+#+END_SRC
+
+*** Question
+– What is the title of book1?
+
+*** Query
+SELECT ?title
+where
+{
+   <http://example.org/book/book1> <http://purl.org/dc/elements/1.1/title> ?title .
+}
+
+*** Query Result
+"SPARQL Tutorial"
+
+** Example 2 - Triple
+@prefix :
+ <http://aabs.purl.org/music#> .
+:andrew :playsInstrument :guitar .
+
+*** Query: which instrument does Andrew play?
+#+BEGIN_SRC xml
+PREFIX : <http://aabs.purl.org/music#>
+SELECT ?instrument
+WHERE {
+      :andrew :playsInstrument ?instrument .
+      }
+#+END_SRC
+
+*** Result
+:guitar
+
+** SPARQL SELECT
++ has two parts
+ – a set of question words and a question pattern
+ – WHERE indicate selection pattern
+
++ example
+#+BEGIN_SRC xml
+SELECT ?instrument WHERE {
+   :andrew :playsInstrument ?instrument .}
+
+SELECT ?who WHERE {
+   ?who :playsInstrument :guitar .}
+
+SELECT ?what WHERE {
+   :andrew :?what :guitar .}
+#+END_SRC
+
+** Consider the following RDF graph
+[[./img/sparqlRDFgraph.png]]
+
+*** Question
++ Write a SPARQL query to find out the movies that JamesDean played in.
+#+BEGIN_SRC xml
+SELECT ?what
+WHERE {
+   :JamesDean :playrdIn ?what .}
+#+END_SRC
+
+** Consider the following RDF graph
+[[./img/sparqlRDFgraphTwo.png]]
+
+*** Question
++ Write a SPARQL query to find out the directors that direct the movies that JamesDean played in.
+#+BEGIN_SRC xml
+SELECT ?who
+ WHERE {:JamesDean :playrdIn ?what .
+        ?what :directedBy ?who .}
+#+END_SRC
+
+*** Result
+?who
+:GeorgeStevens
+:EliaKazan
+:NicholasRay
+:FredGuiol
+
+** Consider the following RDF graph
+[[./img/sqarqlRDFgraphThree.png]]
+
+*** Query
++ Write a SPARQL query to find the actresses who playedIn the same movies as JamesDean.
+#+BEGIN_SRC xml
+SELECT ?actress
+WHERE {:JamesDean :playrdIn ?movie .
+        ?actress :playedIn ?movie .
+        ?actress rdf:type :Woman .}
+#+END_SRC
+** SELECT DISTINCT
++ You can use SELECT DISTINCT to filter out duplicate results
+#+BEGIN_SRC xml
+SELECT DISTINCT ?property ?value
+WHERE ( :JamesDean ?property ?value)
+#+END_SRC
+
+** Multiple matches – Example 1
+Given the following:
+#+BEGIN_SRC xml
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+_:a foaf:name "Johnny Lee Outlaw" .
+_:a foaf:mbox <mailto:jlow@example.com> .
+_:b foaf:name "Peter Goodguy" .
+_:b foaf:mbox <mailto:peter@example.org> .
+_:c foaf:mbox <mailto:carol@example.org> .
+#+END_SRC
+*** Query
+#+BEGIN_SRC xml
+PREFIX foaf:
+ <http://xmlns.com/foaf/0.1/>
+SELECT ?name ?mbox
+   WHERE
+   { ?x foaf:name ?name .
+   ?x foaf:mbox ?mbox }
+#+END_SRC
+
+*** Result
+
+| name                | mailbox                    |
+|---------------------+----------------------------|
+| “Johnny Lee Outlaw” | <mailto:jlow@example.com>  |
+| “Peter Goodguy”     | <mailto:peter@example.com> |
+
+** Consider another example
+@prefix foaf:<http://xmlns.com/foaf/0.1/> .
+@prefix rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+_:a  rdf:type  foaf:Person .
+_:a  foaf:name "Alice" .
+_:a  foaf:mbox <mailto:alice@example.com> .
+_:a  foaf:mbox <mailto:alice@work.example> .
+_:b  rdf:type foaf:Person .
+_:b  foaf:name "Bob" .
+
+*** If this query is executed, what is the result?
+#+BEGIN_SRC xml
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+SELECT ?name ?mbox
+WHERE  { ?x foaf:name  ?name .
+         OPTIONAL { ?x  foaf:mbox  ?mbox }
+       }
+#+END_SRC
+
+*** Result
+| name    | mbox                        |
+|---------+-----------------------------|
+| "Alice" | <mailto:alice@example.com>  |
+| "Alice" | <mailto:alice@work.example> |
+| "Bob"   |                             |
+
+** Matching RDF Literals - Example
+#+BEGIN_SRC xml
+@prefix dt: <http://example.org/datatype#> . @prefix ns: <http://example.org/ns#> .
+@prefix : <http://example.org/ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+:x ns:p "cat"@en .
+:y ns:p "42"^^xsd:integer .
+:z ns:p "abc"^^dt:specialDatatype .
+#+END_SRC
+
+*** Query 1
+#+BEGIN_SRC xml
+SELECT ?v
+WHERE { ?v ?p “cat”}
+#+END_SRC
+**** What is the result?
+No output
+
+*** Query 2
+#+BEGIN_SRC xml
+SELECT ?v
+WHERE { ?v ?p “cat”@en}
+#+END_SRC
+
+**** Result
+<http://example.org/ns#x>
+
+*** Query 3
+#+BEGIN_SRC xml
+SELECT ?v
+WHERE { ?v ?p 42}
+#+END_SRC
+
+**** Result
+<http://example.org/ns#y>
+
+*** Query 4
+#+BEGIN_SRC xml
+SELECT ?v
+WHERE {
+?v ?p "abc"^^<http://example.org/datatype#specialDatatype>
+}
+#+END_SRC
+**** Result
+<http://example.org/ns#z>
+
+*** Blank node labels
+#+BEGIN_SRC xml
+@prefix foaf:
+ <http://xmlns.com/foaf/0.1/> .
+_:a foaf:name "Alice" .
+_:b foaf:name "Bob" .
+#+END_SRC
+
+** SPARQL – Filter
++ restrict solutions to whose for which the filter expression evaluates to be TRUE
+
+*** Example
+#+BEGIN_SRC xml
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix : <http://example.org/book/> .
+@prefix ns: <http://example.org/ns#> .
+
+:book1 dc:title "SPARQL Tutorial" .
+:book1 ns:price 42 .
+:book2 dc:title "The Semantic Web" .
+:book2 ns:price 23 .
+#+END_SRC
+**** Query 1
+#+BEGIN_SRC xml
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+SELECT ?title
+WHERE {
+   ?x dc:title ?title
+   FILTER regex(?title, "^SPARQL")
+}
+#+END_SRC
+***** Result
+Title
+"SPARQL Tutorial"
+
+**** Query 2
+#+BEGIN_SRC xml
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+prefix ns: http://example.org/ns#
+
+SELECT ?title ?price
+WHERE {
+   ?x ns:price ?price
+   FILTER (?price, <30.5)
+   ?x dc:title ?title .
+      }
+#+END_SRC
+
+***** Result
+| Title              | price |
+|--------------------+-------|
+| "The Semantic Web" | 23    |
+
+** CONSTRUCT
++ The SELECT query form returns variable bindings.
++ The CONSTRUCT query form returns an RDF graph.
+*** Given the following data
+@prefix org: <http://example.com/ns#> .
+_:a org:employeeName "Alice" .
+_:a org:employeeId 12345 .
+
+_:b org:employeeName "Bob" .
+_:b org:employeeId 67890 .
+
+**** Query
+#+BEGIN_SRC xml
+  PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+  PREFIX org: <http://example.com/ns#>
+  CONSTRUCT { ?x foaf:name ?name }
+  WHERE  { ?x org:employeeName ?name }
+#+END_SRC
+
+***** Result
+#+BEGIN_SRC xml
+@prefix org: <http://example.com/ns#> .
+_:x foaf:name "Alice" .
+_:y foaf:name "Bob" .
+#+END_SRC
+
+** SPARQL built-in filter functions
++ Logical: !, &&, ||
++ Math: +, -, *, /
++ Comparison: =, !=, >, <, ...
++ SPARQLtests: isURI, isBlank, isLiteral, bound
++ SPARQLaccessors: str, lang, datatype
++ Other: sameTerm, langMatches, regex
+
+*** Example 1
+#+BEGIN_SRC xml
+SELECT ?actor
+WHERE {?actor :playedIn :EastOfEden .
+FILTER (?birthday>”1930-01-01”^^xsd:date)}
+#+END_SRC
+
+*** Example 2
+#+BEGIN_SRC xml
+SELECT ?actor
+WHERE {?actor :playedIn :EastOfEden .
+?actor :bornOn ?birthday .
+FILTER (?birthday>”1930-01-01”^^xsd:date)}
+#+END_SRC
+
+*** Example 3
+#+BEGIN_SRC xml
+SELECT ?actor
+WHERE {
+   ?actor :playedIn :EastOfEden .
+   ?actor :bornOn ?birthday .
+   FILTER (?birthday>”Jan 1, 1960”^^xsd:date)
+   FILTER (?birthday<”Dec 31, 1969”^^xsd:date)
+}
+#+END_SRC
+
+**** Notes
++ Cannot reference a variable in the FILTER if that variable has not been referenced in the graph pattern
++ If multiple filters are used, all tests must be TRUE to return a result
+
+** Binding
++ A value is bound to a variable
+  – Example ?actor is bound to JamesDean
++ A result is returned only when a value is bound to a variable, else it will not
+
+** ASK
++ Asking a question
+ – Return TRUE or FALSE
+#+BEGIN_SRC xml
+ASK WHERE {
+  ?any :playedIn :GIANT .
+  ?any :bornOn ?birthday .
+  FILTER (?birthday > “1950-01-01”^^xsd:date)
+}
+#+END_SRC
+*** Example 1
+#+BEGIN_SRC xml
+@prefix foaf:<http://xmlns.com/foaf/0.1/> .
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+_:a  foaf:name "Alice" .
+_:a  foaf:homepage <http://work.example.org/alice/> .
+_:b  foaf:name "Bob" .
+_:b  foaf:mbox <mailto:bob@work.example> .
+
+ASK  { ?x foaf:name  "Alice" }
+#+END_SRC
+
+**** Output
+TRUE
+
+*** Example 2
+#+BEGIN_SRC xml
+@prefix foaf:<http://xmlns.com/foaf/0.1/> .
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+_:a foaf:name "Alice" .
+_:a foaf:homepage <http://work.example.org/alice/> .
+
+_:b foaf:name "Bob" .
+_:b foaf:mbox <mailto:bob@work.example> .
+
+ASK  { ?x foaf:name  "Alice" ;
+          foaf:mbox  <mailto:alice@work.example> }
+#+END_SRC
+
+**** Output
+FALSE
+
+** Limits and Ordering
+#+BEGIN_SRC xml
+SELECT ?title ?date
+WHERE {
+   :JamesDean :playedIn ?movie .
+   ?movie rdfs:label ?title .
+   ?movie dc:date ?date .
+}
+ORDER BY ?title
+#+END_SRC
+
+*** Another example
+#+BEGIN_SRC xml
+SELECT ?title ?date
+WHERE {
+   :JamesDean :playedIn ?movie .
+   ?movie rdfs:label ?title .
+   ?movie dc:date ?date .
+}
+ORDER BY ?title
+LIMIT 1
+#+END_SRC
+
+*** Another example
+#+BEGIN_SRC xml
+SELECT ?title WHERE {
+   :JamesDean :playedIn ?movie .
+   ?movie rdfs:label ?title .
+   ?movie dc:date ?date .
+}
+ORDER BY DESC ?title
+
+#+END_SRC
+** Aggregates and grouping
++ Aggregate functions
+ – COUNT
+ – MIN
+ – MAX
+ – AVG
+ – SUM
+*** Example 1
+#+BEGIN_SRC xml
+SELECT (COUNT (?movie) AS ?howmany)
+WHERE {
+   :JamesDean ?playedIn ?movie .
+}
+#+END_SRC
+
+*** Consider the following example
+| Company | Amount | Year |
+|---------+--------+------|
+| ACME    | $1250  | 2010 |
+| PRIME   | $3000  | 2009 |
+| ABC     | $2500  | 2009 |
+| ABC     | $2800  | 2010 |
+| PRIME   | $1950  | 2010 |
+| ACME    | $2500  | 2009 |
+| ACME    | $3100  | 2010 |
+| ABC     | $1500  | 2009 |
+| ACME    | $1250  | 2009 |
+| PRIME   | $2350  | 2009 |
+| PRIME   | $1850  | 2010 |
+
+**** In Triples
+Each row has 4 triples
+:row1 a :Sale .
+:row1 :company :ACME .
+:row1 :amount : 1250 .
+:row1 :year 2010
+
+** SUM
+#+BEGIN_SRC xml
+SELECT (SUM (?val) AS ?total)
+WHERE {
+   ?s a: Sale .
+   ?s :amount ?val
+}
+#+END_SRC
+
+** GROUP BY
+#+BEGIN_SRC xml
+SELECT ?year (SUM (?val) AS ?total)
+WHERE {
+   ?s a: Sale .
+   ?s :amount ?val . ?s :year ?year
+}
+GROUP BY ?year
+#+END_SRC
+
+** Another example
+#+BEGIN_SRC xml
+  SELECT ?year ?company (SUM (?val) AS ?total)
+  WHERE {
+     ?s a: Sale .
+     ?s :amount ?val . ?s :year ?year .
+     ?s :company ?company
+}
+GROUP BY ?year ?company
+#+END_SRC
+
+** HAVING
+#+BEGIN_SRC xml
+SELECT ?year ?company (SUM (?val) AS ?total)
+WHERE {
+   ?s a: Sale .
+   ?s :amount ?val .
+   ?s :year ?year .
+   ?s :company ?company
+}
+GROUP BY ?year ?company
+HAVING (?total > 5000)
+#+END_SRC
+** UNION
++ Combines two graph patterns
+#+BEGIN_SRC xml
+SELECT ?actor
+WHERE {
+       {?actor :playedIn :Giant .}
+       UNION
+       {?actor :playedIn :RebelWithoutaCause .}
+}
+#+END_SRC
+** SUBQUERIES
++ Query within a query
++ Generally subquery is not required in SPARQL because SPARQL graph pattern can include arbitrary connections between variables and resource identifiers
++ However subqueries are useful when combining limits and aggregates with other graph patterns.

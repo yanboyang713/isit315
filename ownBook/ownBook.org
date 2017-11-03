@@ -1661,6 +1661,8 @@ HAVING (?total > 5000)
 #+END_SRC
 ** UNION
 + Combines two graph patterns
++ Variables in each pattern takes values independently but the results are combined together
+
 #+BEGIN_SRC xml
 SELECT ?actor
 WHERE {
@@ -1669,7 +1671,59 @@ WHERE {
        {?actor :playedIn :RebelWithoutaCause .}
 }
 #+END_SRC
+*** Output
+[[./img/union.png]]
+
 ** SUBQUERIES
 + Query within a query
 + Generally subquery is not required in SPARQL because SPARQL graph pattern can include arbitrary connections between variables and resource identifiers
 + However subqueries are useful when combining limits and aggregates with other graph patterns.
+
+*** Example: Subquery to compute total sales for 2009 and 2010
+[[./img/subqueryExample.png]]
+
+**** Output
+?Company
+ACME
+
+
+*** Another example: Using subquery in CONSTRUCT
+[[./img/subqueryForConstruct.png]]
+
+**** Output
+#+BEGIN_SRC xml
+:PRIME a :PreferredCustomer .
+:PRIME :totalSales 5350.00 .
+#+END_SRC
+
+** SPARQL Endpoint
++ A server for the SPARQL protocol
+ – accepts queries and returns results via HTTP.
+   + Generic endpoints will query any Web-accessible RDF data
+   + Specific endpoints are hardwired to query against particular datasets
++ Endpoint is identified with a URL and provides flexible access to its data set
+
+*** Various output formats
++ The results of SPARQL queries can be returned and/or rendered in a variety of formats:
+ – XML. SPARQL specifies an XML vocabulary for returning tables of results.
+ – JSON. A JSON "port" of the XML vocabulary, particularly useful for Web applications.
+ – CSV/TSV. Simple textual representations ideal for importing into spreadsheets
+ – RDF. Certain SPARQL result clauses trigger RDF responses, which in turn can be serialized in a number of ways (RDF/XML, N-Triples, Turtle, etc.)
+ - HTML. When using an interactive form to work with SPARQL queries. Often implemented by applying an XSL transform to XML results.
+
+*** The intention of SPARQL endpoints
++ Give other people and organisations access to your data in a very flexible way
++ Eventually realise the potential of federated SPARQL whereby several SPARQL Endpoints are combined to allow complex queries to be run across a number of datasets
++ They are open for use by a large and varied audience
+
+*** Challenges of using SPARQL endpoint
++ Intermittently available or not available
+
+** Examples of SPARQL Query Editors
++ Rasqal
++ Virtuoso
++ Flint SPARQL query editor
+
+* Ontology Engineering
+As you know in Specific Semantic Web Layer, Logic is on the top of OWL and SPARQL is used for query of RDF and OWL documents:
+[[./img/ontologyEngineering.png]]

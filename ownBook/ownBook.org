@@ -1727,3 +1727,317 @@ ACME
 * Ontology Engineering
 As you know in Specific Semantic Web Layer, Logic is on the top of OWL and SPARQL is used for query of RDF and OWL documents:
 [[./img/ontologyEngineering.png]]
+
+** Query Languages
+The SPARQL searches for sets of triples matching given patterns and is human-friendly pattern of search.
+Without query languages, questions cannot be answered and since, Web Semantic is involved with answering questions, these query languages (like SPARQL) play a  key role in Web Semantic.
+
+** Using select-from-where
+- As in SQL, SPARQL queries have a SELECT-FROM-WHERE structure:
+ + SELECT specifies the projection: the number and order of retrieved data
+ + FROM is used to specify the source being queried (optional)
+ + WHERE imposes constraints on possible solutions in the form of graph pattern templates and boolean constraints
+
+- Retrieve all phone numbers of staff members:
+
+#+BEGIN_SRC xml
+SELECT ?x ?y
+		WHERE
+		{ ?x uni:phone ?y .}
+#+END_SRC
+
+- Here ?x and ?y are variables, and ?x uni:phone ?y represents a resource-property-value triple pattern
+
+** Explicit Join
+- Retrieve the name of all courses taught by the lecturer with ID 949352
+#+BEGIN_SRC xml
+SELECT ?n
+WHERE
+{
+	?x rdf:type uni:Course ;
+		uni:isTaughtBy :949352 .
+	?x uni:name ?n .
+}
+#+END_SRC
+
+** Categories
+Categories are the base of semantic Web and are called (i) domains (in databases), (ii) types (in Artificial intelligence), (iii) classes (in object oriented programming), and (iv) concepts(in logic). Sets can show Categories. For instance, subclasses can be shown with:
+
+[[./img/categories.png]]
+
+** Constructing Ontologies Manually
+- In Web Semantic, Ontology is a key factor. Logic has no vocabulary. Ontology fills such a gap, and there are 8 main Stages in Ontology Development:
+1. Determine scope
+2. Consider reuse
+3. Enumerate terms
+4. Define taxonomy
+5. Define properties
+6. Define facets (cardinality, symmetry, transitivity,…………)
+7. Define instances
+8. Check for anomalies
+
+Not a linear process!
+
+** Reusing Existing Ontologies
+*** Existing Domain-Specific Ontologies
+There are many domains for ontology,  for instance:
+
+- Medical domain: Cancer ontology from the National Cancer Institute in the United States
+- Cultural domain:
+ + Art and Architecture Thesaurus (AAT)  with 125,000 terms in the cultural domain
+ + Union List of Artist Names (ULAN), with 220,000 entries on artists
+ + Iconclass vocabulary of 28,000 terms for describing cultural images
+- Geographical domain: Getty Thesaurus of Geographic Names (TGN), containing over 1 million entries
+
+*** Integrated Vocabularies
+- Merge independently developed vocabularies into a single large resource
+- E.g. Unified Medical Language System integrating 100 biomedical vocabularies
+ + The UMLS metathesaurus contains 750,000 concepts, with over 10 million links between them
+- The semantics of a resource that integrates many independently developed vocabularies is rather low
+ + But very useful in many applications as starting point
+
+*** Upper-Level Ontologies
+- Some attempts have been made to define  generally applicable ontologies
+ + Mot domain-specific
+- Cyc, with 60,000 assertions on 6,000 concepts
+- Standard Upperlevel Ontology (SUO)
+
+*** Topic Hierarchies
++ Some “ontologies” do not deserve this name:
+ - simply sets of terms, loosely organized in a hierarchy
++ This hierarchy is typically not a strict taxonomy but rather mixes different specialization relations (e.g. is-a, part-of, contained-in)
++ Such resources often very useful as starting point
++ Example: Open Directory hierarchy, containing more than 400,000 hierarchically organized categories and available in RDF format
+
+*** Linguistic Resources
+- Some resources were originally built not as abstractions of a particular domain, but rather as linguistic resources
+- These have been shown to be useful as starting places for ontology development
+ + E.g. WordNet, with over 90,000 word senses
+
+*** Ontology Libraries
++ Attempts are currently underway to construct online libraries of online ontologies
+ - Rarely existing ontologies can be reused without changes
+ - Existing concepts and properties must be refined using rdfs:subClassOf and rdfs:subPropertyOf
+ - Alternative names must be introduced which are better suited to the particular domain using owl:equivalentClass and owl:equivalentProperty
+- We can exploit the fact that RDF and OWL allow private refinements of classes defined in other ontologies
+
+** Semiautomatic Ontology Acquisition
+*** The Knowledge Acquisition Bottleneck
++ Manual ontology acquisition remains a time-consuming, expensive, highly skilled, and sometimes cumbersome task
++ Machine Learning techniques may be used to alleviate
+ - knowledge acquisition or extraction
+ - knowledge revision or maintenance
+
+*** Tasks Supported by Machine Learning :
++ Extraction of ontologies from existing data on the Web
++ Extraction of relational data and metadata from existing data on the Web
++ Merging and mapping ontologies by analyzing extensions of concepts
++ Maintaining ontologies by analyzing instance data
+
+*** Useful Machine Learning Techniques for Ontology Engineering:
++ Clustering
++ Incremental ontology updating
++ Support for the knowledge engineering
++ Improving large natural language ontologies
++ ontology learning
+
+** Ontology Mapping
++ A single ontology will rarely fulfill the needs of a particular application; multiple ontologies will have to be combined
++ This raises the problem of ontology integration (also called ontology mapping)
++ Current major approaches in ontology mapping are:
+ 1. linguistic,
+ 2. statistical,
+ 3. structural, and
+ 4. logical methods
+
++ Each of these four important methods will be discussed in detail in the next slides:
+
+*** Linguistic methods
++ The most basic methods try to exploit the linguistic labels attached to the concepts in source and target ontology in order to discover potential matches
+
+*** Statistical Methods
++ A significant statistical correlation between the instances of a source concept and a target concept, gives us reason to believe that these concepts are strongly related.
+
++ These approaches rely on the availability of a sufficiently large amount of instances that are classified in both the source and the target  ontologies.
+
+*** Structural Methods
++ Since ontologies have internal structure, it makes sense to exploit the graph structure of the source and the target ontologies and try to determine similarities, often in coordination with other methods.
+ - If a source target and a target concept have similar linguistic labels, then the dissimilarity of their graph neighborhoods could be used to detect homonym problems where purely linguistic methods would falsely declare a potential mapping
+
+*** Logical Methods
++ The most specific to mapping ontologies
++ A serious limitation of this approach is that many practical ontologies are semantically rather lightweight and thus don’t carry much logical formalism with them.
++ In any case, if an ontology carries heavy logical formalism, logical methods can be effectively used for its mapping.
+
+*** Ontology-Mapping Techniques Conclusion
++ Although there is much potential, and indeed need, for these techniques to be deployed for Semantic Web engineering, this is far from a well-understood area
++ For Ontology-Mapping , no off-the-shelf techniques are currently available, and it is not clear that this is likely to change in the near future.
+
+** Architecture
++ Building the Semantic  Web or in fact its architecture involves :
+ - Knowledge Acquisition
+ - Knowledge Storage
+ - Query Languages, and
+ - Knowledge Maintenance
+
+*** Knowledge Acquisition
++ Initially, tools must exist that use surface analysis techniques to obtain content from documents
+ - Unstructured natural language documents: statistical techniques and shallow natural language technology
+ - Structured and semi-structured documents: wrappers induction, pattern recognition
+
+*** Knowledge Storage
++ The output of the analysis tools is sets of concepts, organized in a shallow concept hierarchy with at best very few cross-taxonomical relationships
++ RDF/RDF Schema are sufficiently expressive to represent the extracted info
+ - Store the knowledge produced by the extraction tools
+ - Retrieve this knowledge, preferably using a structured query language
+
+* Description logic program (DLP)
++ Intersection of Horn Logic and OWL is called DLP (Description Logic Program).
++ the relation of OWL Description Logic Program (DLP) to other languages:
+[[./img/DLP.png]]
+Note that here by logic program we mean a finite set of facts and rules and not a computer program.
+
+** Equivalent terms:
+ + In OWL:   in Description  Logic:
+ + class   = concept
+ + property= role
+ + Object  = individual
+
+** In Description logic Program  (DLP) we can use:
++ intersection or conjunction of concepts C and D
++ union or disjunction of concepts C or
++ negation or complement of concepts not
++ universal restriction in C
++ existential restriction in C
+
+** Knowledge Representation
++ The subjects presented so far were related to the representation of knowledge
++ Knowledge Representation was studied long before the emergence of WWW in AI
++ Logic is still the foundation of KR, particularly in the form of predicate logic (first-order logic)
+
+[[./img/DLPone.png]]
+
+[[./img/DLPtwo.png]]
+
+** Three Exercises
+*** Exercise 1: Express the following as facts, rules, and questions
++ “clyde” is a Tiger
++ “simi” is a rabbit
++ Rabbits hate tigers
++ Rabbit is a Species
++ Tiger is a Species
++ --------------------
++ Is “clyde” a Species?
++ Does “simi” like “clyde”?
+
+**** Answer:
++ Facts:
+ - Tiger(clyde)
+ - Rabbit(simi)
+
++ Rules:
+ - Hate(X,Y) -> ¬ Like (X,Y)
+ - Rabbit(X), Tiger(Y) -> Hate(X,Y)
+ - Rabbit(X) -> Species(X)
+ - Tiger(X) -> Species(X)
+
++ Questions:
+ - -> Species(clyde)
+ - -> Like(simi,clyde)
+
+*** Exercise 2:
++ Consider the following facts in a database about family relationships:
+ - mother(X,Y), X is the mother of Y
+ - father(X,Y), X is the father of Y
+ - uncle(X,Y), X is the uncle of Y
+ - brother(X,Y), X is the brother of Y
+ - sister(X,Y), X is the sister of Y
+ - notSame(X,Y), X is not the same as Y
+ - male(X), X is male
+ - female(X), X is female
+
+a) Express a rule showing
+ X is the grandmother of y
+
+b) Express a pair of rules showing X is a half-sister  of Y
+
+**** Answer:
+a) mother(X,P), parent(P,Y) -> grandmother(X,Y)
+b) female(X),mother(M,X), mother(M,Y), father(F1,X), father(F2,Y), notSame (F1,F2) -> half-sister(X,Y)
+
+female(X), father(F,X), father(F,Y)mother(M1,X), mother(M2,Y), notSame (M1,M2) -> half-sister(X,Y)
+
+*** Exercise 3:
+Name the three types of container elements in RDF and provide an example for each of them.
+
+**** Answer:
+Three Types of Container Elements
+1. rdf:Bag an unordered container, allowing multiple occurrences
+ - For example,  members of the faculty board, documents in a folder
+2. rdf:Seq an ordered container, which may contain multiple occurrences
+ - For example, modules of a course, items on an agenda, an alphabetized list of staff members (order is imposed)
+3. rdf:Alt a set of alternatives
+ - For example, translations of a document in various languages
+
+* Logic and Inference
+[[./img/NestingOfBooleanOperators.png]]
+
+** The Importance of Logic
++ High-level language for expressing knowledge
++ High expressive power
++ Well-understood formal semantics
++ Precise notion of logical consequence
++ Proof systems that can automatically derive statements syntactically from a set of premises
++ There exist proof systems for which semantic logical consequence coincides with syntactic derivation within the proof system
+ - Soundness & completeness
++ Predicate logic is unique in the sense that sound and complete proof systems do exist.
+ - Not for more expressive logics (higher-order logics)
++ trace the proof that leads to a logical consequence.
++ Logic can provide explanations for answers
+ - By tracing a proof
+
+** Specializations of Predicate Logic:RDF and OWL
++ The languages of RDF and OWL can be viewed  as specializations of predicate logic (first order logic).
++ More expressive logics (higher order logics) do not have such proof systems.
++ Predicate logic and its special cases are monotonic, in the sense that, if a conclusion can be drawn, it remains valid even if new knowledge becomes available.
++ RDF/S and OWL (Lite and DL) as specializations of predicate logic correspond roughly to a description logic  (DL).
++ They define reasonable subsets of logic
++ Trade-off between the expressive power and the computational complexity:
+ - The more expressive the language, the less efficient the corresponding proof systems
+
+** Horn Logic
+In Horn Logic a rule is represented as:
+ A1, . . ., An -> B
+
+*** Specializations of Predicate Logic: Horn Logic
++ A rule has the form: A1, . . ., An -> B
+ - Ai and B are atomic formulas
++ In Horn logic, there are 2 ways of reading such a rule:
+ - Deductive rules: If A1,..., An  are known to be true, then B is also true
+ - Reactive rules: If the conditions A1,..., An  are true, then carry out the action B
+
+** Description Logics vs. Horn Logic
++ Neither of them is a subset of the other
++ It is impossible to assert that a person X who is brother of Y is uncle of Z (where Z is child of Y) in OWL
+ - This can be done easily using rules: brother(X,Y), childOf(Z,Y) -> uncle(X,Z)
++ Rules cannot assert the information that a person is either a man or a woman
+ - This information is easily expressed in OWL using disjoint union
+
+** Monotonic vs. Non-monotonic Rules(9 - 16pg)
++ Example: An online vendor wants to give a special discount if it is a customer’s birthday
+
++ Solution 1
+ - R1: If birthday, then special discount
+ - R2: If not birthday, then not special discount
+
+But what happens if a customer refuses to provide his birthday due to privacy concerns?
+
++ Solution 2
+ - R1: If birthday, then special discount
+ - R2’: If birthday is not known, then not special discount
+
+Solves the problem but: The premise of rule R2' is not within the expressive power of predicate logic We need a new kind of rule system
+
+The solution with rules R1 and R2 works in case we have complete information about the situation
+The new kind of rule system will find application in cases where the available information is incomplete
+R2’ is a nonmonotonic rule

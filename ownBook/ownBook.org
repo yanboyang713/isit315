@@ -101,7 +101,7 @@ John is the creator of the web page http://www.uow.edu.au/~john
 - URIrefs are shown as ellipses
 - Literals are shown as boxes
 
-[[./img/triplesExampleOne/png]]
+[[./img/triplesExampleOne.png]]
 
 ** example 2 (with blank node)
 [[./img/blankNodeExample.png]]
@@ -2023,7 +2023,7 @@ In Horn Logic a rule is represented as:
 + Rules cannot assert the information that a person is either a man or a woman
  - This information is easily expressed in OWL using disjoint union
 
-** Monotonic vs. Non-monotonic Rules(9 - 16pg)
+** Monotonic vs. Non-monotonic Rules
 + Example: An online vendor wants to give a special discount if it is a customer’s birthday
 
 + Solution 1
@@ -2036,8 +2036,62 @@ But what happens if a customer refuses to provide his birthday due to privacy co
  - R1: If birthday, then special discount
  - R2’: If birthday is not known, then not special discount
 
-Solves the problem but: The premise of rule R2' is not within the expressive power of predicate logic We need a new kind of rule system
++ Solves the problem but: The premise of rule R2' is not within the expressive power of predicate logic We need a new kind of rule system
 
-The solution with rules R1 and R2 works in case we have complete information about the situation
-The new kind of rule system will find application in cases where the available information is incomplete
-R2’ is a nonmonotonic rule
++ The solution with rules R1 and R2 works in case we have complete information about the situation
++ The new kind of rule system will find application in cases where the available information is incomplete
++ R2’ is a nonmonotonic rule
+
+** Exchange of Rules
++ Exchange of rules across different applications
+ - E.g., an online store advertises its pricing, refund, and privacy policies, expressed using rules
++ The Semantic Web approach is to express the knowledge in a machine-accessible way using one of the Web languages we have already discussed
++ We show how rules can be expressed in XML-like languages (“rule markup languages”)
++ Information of a logic program can be provided from different websites.
++ A crawler is a compute program which visits Web sites and reads their pages and then parses the information in these web site to visit other websites!!
++ Crawlers can  create entries for a search engines
++ All search engines on the Web  have such a program.
++ The term  crawler signifies  the fact that they crawl through an entire site a page at a time. A crawler crawls different sites following the links to other sites.
++ For doing such a highly sophisticated task, they can be programmed in an extremely easy recursive fashion.
+
+[[./img/ClassHierarchyforRDFSchema.png]]
+
++ XPATH and SPARQL are for searching RDF files. Whereas XPATH works for all XML files, including RDF, SPARQL cannot search any XML files and needs triplets to search:
+ - Subject, Property ,Object
+ - I LIKE RDF
+ - YOU GET THE-CD
+ - FRED PUSHED THE-TABLE
+ - THE-RACE-CAR HAS_SPEED_OF 300_KM/HOUR
+
++ What is XPath?
+ - XPath is a syntax for defining parts of an XML document
+ - XPath uses path expressions to navigate in XML documents
+ - XPath contains a library of standard functions
+ - XPath is a major element in XSLT
+ - XPath is a W3C recommendation
+[[./img/xpath.png]]
+
+*** example
+- Assume you have a Person class and property called parent. Both the domain and range of parent is Person. In the following we write DL query to display the grandparents of “Jim” which is a member of Person class:
+ + Person and parent some (parent value Jim)
+- Note to the usage of and, some, and value in DL
+- As you know, OWL and RDF do not make the Unique Name Assumption:
+ + If you assert p(a,b) and p(a,c) and then ask for p min 2 in DL, you will not obtain  a , because it could be that b=c , and in that case “a” may not have necessarily two values for p !!
+ + However if you assert that b ≠ c, then p min 2 in DL will result to a.
++ If you go to “Edit” menu item and select “Make all individuals Distinct”, then all of your current individuals will become distinct from one another. Try not to do so, as this makes some reasoners confused!
+
+*** example
+Assume  you have the following ontology
+
+:hasPet    a           owl:ObjectProperty;
+        rdfs:domain :Human;
+        rdfs:range  :Animal;
+:Tim    a           :Human;
+        hasPet      :dogy.
+
+hasPet exactly 1 Animal
+does not return  Tim because if we do know that he has dogy, it does not mean that he has not any other animal.  This is Open World Assumptions OWL sticks to !  Maybe we are not aware of:
+:Tom     hasPet      :catten, mousy.
+
+In other words, OWL and RDF doe not assume that the provided data  are exhaustive enumeration of everything in the world and that there may be many things that are true and are not in the owl  (or rdf) document
+:what

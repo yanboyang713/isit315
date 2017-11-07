@@ -77,7 +77,7 @@ Semantic Searching
 – Direction of arc is significant
 + Always point to the object
 
-[[./img/graphBasedModel.jpg]]
+[[./img/graphBaseModel.jpg]]
 
 [[./img/graphModelExample.png]]
 

@@ -2377,3 +2377,61 @@ hasAncestor(X,Z) -> hasAncestor(X,Y), hasAncestor(Y,Z).
 
 ** DL and reasoning
 + Modern DL systems provide their users with reasoning services that can automatically deduce implicit knowledge from the explicitly represented knowledge, and always yield a correct answer in finite time.
+
+** The Subsumption Algorithm
++ The subsumption algorithm determines subconcept-superconcept relationships:
++ C is subsumed by D if all instances of C are necessarily instances of D
+ – the first description is always interpreted as a subset of the second description.
+
+** The Instance Algorithm
++ The instance algorithm determines instance relationships:
+ – the individual i is an instance of the concept description C if i is always interpreted as an element of the interpretation of C.
+
+** The Consistency Algorithm
++ The consistency algorithm determines whether a knowledge base (consisting of a set of assertions and a set of terminological axioms) is non-contradictory.
+
+*** Reasoning Steps - 1
++ In a typical application, one would start building the Tbox
++ Ensure that all concepts in it are satisfiable,
+ – i.e., Are not subsumed by the bottom concept, which is always interpreted as the empty set.
++ One would use the subsumption algorithm to compute the subsumption hierarchy
+ – i.e., to check, for each pair of concept names, whether one is subsumed by the other.
+
+*** Reasoning Steps - 2
++ Check for its consistency Abox with Tbox
+ – Compute the most specific concept(s) that each individual is an instance of
+ – Could also use a concept description as a query, i.e., We could ask the DL system to identify all those individuals that are instances of the given, possibly complex, concept description.
+
+** OWL Reasoning
++ In the context of OWL ontologies, reasoning is the process of making explicit that which is implicit in an ontology
+
+** Problems of Keyword-Based Search Engines
++ High recall, low precision.
++ Low or no recall
++ Results are highly sensitive to vocabulary
++ Results are single Web pages
++ Human involvement is necessary to interpret and combine results
++ Results of Web searches are not readily accessible by other software tools
+
+** The Key Problem of Today’s Web
++ The meaning of Web content is not machine-accessible: lack of semantics
++ It is simply difficult to distinguish the meaning between these two sentences:
+ - I am a lecturer of information Technology.
+ - I am a lecturer of information Technology, you may think. Well, . . .
+
+** Syntax vs Sematic
++ Syntax is about how a sentence is created whereas Semantic is about  the meaning of the sentence.
++ Web has originally been about syntax! Efforts have been made to push it towards semantic.
++ This subject is about  these  efforts.
+
+** The Semantic Web Approach
++ Represent Web content in a form that is more easily machine-processable.
++ Use intelligent techniques to take advantage of these representations.
++ The Semantic Web will gradually evolve out of the existing Web, it is not a competition to the current WWW.
+
+** Logic and Inference
++ Logic is the discipline that studies the principles of reasoning
++ Formal languages for expressing knowledge
++ Well-understood formal semantics
+ - Declarative knowledge: we describe what holds without caring about how it can be deduced
++ Automated reasoners can deduce (infer) conclusions from the given knowledge

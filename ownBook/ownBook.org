@@ -184,15 +184,18 @@ The content of the element is a number of descriptions which use rdf:Description
   + An ID attribute, creating a new resource
   + Without a name, creating an anonymous resource
 
-* Example
+** Example
+#+BEGIN_SRC xml
 <rdf:RDF>
   <rdf:Description
   about="http://www.w3.org/Home/Lassila">
   <s:Creator>Ora Lassila</s:Creator>
   </rdf:Description>
 </rdf:RDF>
+#+END_SRC
 
 ** Complete XML
+#+BEGIN_SRC xml
 <?xml version="1.0"?>
 <rdf:RDF
    xmlns:rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#
@@ -201,6 +204,7 @@ The content of the element is a number of descriptions which use rdf:Description
       <s:Creator>Ora Lassila</s:Creator>
    </rdf:Description>
 </rdf:RDF>
+#+END_SRC
 
 * Description element
   - The Description element names, in an about attribute, the resource to which each of the statements apply.
@@ -2095,3 +2099,281 @@ does not return  Tim because if we do know that he has dogy, it does not mean th
 
 In other words, OWL and RDF doe not assume that the provided data  are exhaustive enumeration of everything in the world and that there may be many things that are true and are not in the owl  (or rdf) document
 :what
+
+More Plainlely:
+
+The absence of an assertion of p (a, c) does not imply that 
+not( p (a, c) ),
+but rather just that there is no judgment yet on 
+p (a, c)
+In fact, unlike in databases, in open world reasoning  nothing is assumed to be false unless it has explicitly been stated !
+
+
+ Go to the Individuals tab, select Tim, click the "+" button next to Types, go to the Class expression editor tab, and enter,
+
+hasPet  only { Dogy }
+
+And the problem will be solved. Now
+hasPet excatly 1
+Will result to    Tim !
+
+The reason is that not only Tim is in the class Person but in the class:
+ hasPet  only { Dogy }
+As well !
+
+
+*** example
+Assume there are three colours:
+Colours :{red,  white,  blue}
+And in the set Flower, every flower can have one or  more colour(s).
+The following DL query
+        Flower and hasColor value red
+does return any flower with red colour but not every flower with ONLY red colour.
+Even changing it to
+          Flower and (hasColor only {red})
+ does not solve the problem.    WHY?
+
+**** ANSWER
+ Because OWL uses the open world assumption. and  if we know that  a  flower has red colour, it does not mean that it does not have other colour. It can have other colours not stated in the dataset.
+Again the solution is to go to the Individuals tab, select flower1, click the "+" button next to Types, go to the Class expression editor tab, and enter,
+
+hasColour  only { red }
+In DL, the difference between some and only is as follows:
+  when we say that we look for a flower that has some colour red and white, if a flower is white and yellow is selected, however,
+when we say that we look for a flower that has only colour red and white then a flower which is red or white or (red and white) is selected but  a flower which has some extra colour is not slected !
+   In fact ”only” is about closure and closes off extra options, whereas ”some” does not do so.
+
+* 8 steps of ontology development process
+1. Determine scope
+2. Consider reuse
+3. Enumerate terms
+4. Define taxonomy
+5. Define properties
+6. Define facets
+7. Define instances
+8. Check for anomalies
+
+** Step 1. Determine scope
++ Ontology is a model/abstraction of a domain
++ Should be determined by the use of which the ontology will be put and by future extensions
++ Basic questions to ask
+ – What is the domain that the ontology will cover
+ – For what we are going to use the ontology
+ – For what types of questions should the ontology provide answers
+ – Who will use and maintain the ontology
+
+*** Competency questions
++ One of the easy ways to determine scope of ontology is to develop competency questions
++ Example: Wine and food domain
+ – Which wine characteristics should I consider when choosing a wine?
+ – What is the best choice of wine for grilled meat?
+ – Which characteristics of a wine affect its appropriateness for a dish?
+ – Does Cabernet Sauvignon go well with seafood?
+
+*** Example: Food and wines (1)
++ We plan to use this ontology for the applications that suggest good combinations of wines and food.
+ – Naturally, the concepts describing different types of wines, main food types, the notion of a good combination of wine and food and a bad combination will figure into our ontology.
++ It is unlikely that the ontology will include concepts for managing inventory in a winery or employees in a restaurant even though these concepts are somewhat related to the notions of wine and food.
++ If the ontology will be used to help restaurant customers decide which wine to order, we need to include retail-pricing information.
++ If it is used for wine buyers in stocking a wine cellar, wholesale pricing and availability may be necessary.
+
+** Step 2. Consider reuse
++ Rarely we have to start from scratch when defining ontology
+ – Reusing existing ontologies may be a requirement if our system needs to interact with other applications that have already committed to particular ontologies or controlled vocabularies.
++ Look for third-party that provides a useful starting point for ontology
+
+*** Example: Food and wines
++ A knowledge base of French wines may already exist
+ – If we can import this knowledge base and the ontology on which it is based, we will have not only the classification of French wines but also the first pass at the classification of wine characteristics used t o distinguish and describe the wines.
++ Lists of wine properties may already be available from commercial Web sites such as www.wines.com that customers consider use to buy wines.
+
+** Step 3. Enumerate terms
++ Useful first step is to write down in an unstructured list all relevant terms that are expected to appear in the ontology
+ – nouns -> class names
+ – verbs/phrases –> property names (e.g. hasComponent, isPartOf)
+
+*** Example: Food and wines
++ Wine-related terms will include
+ – Wine, grape, winery, location, a wine’s color, body, flavor and sugar content;
+ – Different types of food, such as fish and red meat;
+ – Subtypes of wine such as white wine, and so on.
+
+** Step 4. Define taxonomy
++ Organise terms identified in step 3 into taxonomic hierarchy
+ – Can use bottom-up or top-down approach
+ – Hierarchy – class/subclass
++ Threeapproaches
+ – Top-down
+ – Bottom-up
+ – Combination
+
+*** Top-down
++ Starts with the definition of the most general concepts in the domain and subsequent specialization of the concepts.
++ Example
+ – We can start with creating classes for the general concepts of Wine and Food.
+ – Then we specialize the Wine class by creating some of its subclasses: White wine, Red wine, Rosé wine.
+ – We can further categorize the Red wine class, for example, into Shiraz, Red Burgundy, Cabernet Sauvignon, and so on.
+
+*** Bottom-up
++ Starts with the definition of the most specific classes, the leaves of the hierarchy, with subsequent grouping of these classes into more general concepts.
++ Example
+ – We start by defining classes for Pauillac and Margaux wines.
+ – We then create a common superclass for these two classes—Medoc—which in turn is a subclass of Bordeaux.
+
+*** Combination
++ Is a combination of the top-down and bottom-up approaches
+ – We define the more salient concepts first and then generalize and specialize them appropriately
++ may result in middle-level concept
+
+** Step 5. Define properties
++ Often interleaved with step 4
++ Organise properties that link the classes while organising these classes in a hierarchy
++ Provide domain and range to properties
+ – need to balance between generality and specificity
+   + e.g. broad/general enable properties to be used by subclasses (through inheritance)
+   + too narrow/specific  may create inconsistencies through domain and range violations
+
+*** Different types of object properties
++ Intrinsicproperty
++ Extrinsicproperty
++ Parts(canbebothphysicalandabstractparts) • Relationshipstootherindividuals
++ Example:
+ – Intrinsic – flavour of wine
+ – Extrinsic – wine’s name, area where it comes from
+ – Parts – courses of a meal
+ – Relationship: maker of the wine
+
+** Step 6. Define facets
++ Consider
+ – Cardinality
+  + Minimum and maximum cardinalities
+  + E.G. Allowed to have a certain number of different values (e.G. At least one pizzatopping; at most one pizzabase)
+ - Value types: string, number, boolean, enumerated
+ – Required values
+ – Relational characteristics
+  + Symmetry, transitivity, inverse properties, functional values
+
+** Step 7. Define instances
++ Defining an individual instance of a class requires
+ 1. Choosing a class,
+ 2. Creating an individual instance of that class, and
+ 3. Filling in the values.
++ Fill in instances
+ – can retrieve from databases
+ – often is not done manually due to the large number of instances
+
+** Step 8. Check for anomalies
++ Check for consistencies
++ Examples of anomalies
+ – Incompatible domain and range definitions for transitive, symmetric or inverse properties
+ – Inconsistent cardinalities
+ – Property values conflict with domain and restriction
+
+* What is Reasoning?
++ Reasoning is the cognitive process of looking for reasons for beliefs, conclusions, actions or feelings
++ The world does not give us complete information
++ Reasoning is the set of processes that enables us to go beyond the information given
++ Reasoning in most of the cases is based on Logic
+
+* Three species of OWL
++ OWL Lite
+ – Classification hierarchies with simple constraints
+ – Reasoning is computational simple & efficient
++ OWL DL
+ – Computational complete and decidable (computation in finite time)
+ – Corresponds to description logic
++ OWL Full
+ – Maximum expressiveness
+ – No computational guarantee
+
+** The “DL” in OWL DL
++ Description Logics
++ Goal: to be able to reason (i.e. infer information) about a knowledge base
+ – A knowledge base consists of both meta information (classes) and instance information (individuals)
+
+* Open world assumption
++ Consider the following example:
+
+ Statement: "Mary" "is a citizen of" "France"
+ Question: Is Paul a citizen of France?
+
++ "Closed world" (for example SQL) answer: No.
++ "Open world" answer: Unknown.
+
+** closed world vs. Open World
+[[./img/closedWorldVSopenWorld.png]]
+
+* Description Logics
++ Highly expressible fragment of first-order logic with
+ – Decidability
+  + Guaranteed that computation can be done in finite time
+ – Completeness
+  + Every question within the logical system can be answered
+
++ Designed for logical representation of object-oriented formalisms
+ – Frames/classes/concepts
+  + Sets of objects
+ – Roles/properties
+  + Binary relations on objects
+ – Individuals
+
++ Represented as a collection of statements, with unary & binary predicates that stand for concepts and roles, from which deductions can be made
+
+** Description Logic Syntax - Concepts
++ Classes/concepts are actually a set of individuals
++ We can distinguish different types of concepts:
+ – Atomic concepts: Cannot be further decomposed (i.e. Person)
+ – Incomplete concepts (defined by   )
+  + necessary condition
+ – Complete concepts (defined by ≡)
+  + necessary and sufficient condition
+
+** Incomplete concept defintion
++ Man   Person   Male
+ – Intended meaning: If an individual is a man, we can conclude that it is a person and male.
++ Man(x)   Person(x)   Male(x)
++ In Protege
+ – necessary conditions are called primitive class
+
+** Complete concept definition
++ Man ≡ Person   Male
+ – Intended meaning: Every individual which is a male person is a man, and every man is a male person.
++ Man(x) Person(x) Male(x)
++ In Protégé
+ – necessary and sufficient conditions are called Equivalent classes (defined class)
+
+** Description Logic Syntax- Roles
++ Rolesrelateindividualstoeachother
+ – I.e. directedBy(Pool Sharks, Edwin Middleton), hasChild(Jonny, Sue)
++ Roleshaveadomainandarange
++ Example:
+ – Domain(directedBy, Movie)
+ – Range(directedBy, Person)
+  + Given the above definitions we can conclude that Pool Sharks is a movie and that Edwin Middleton is a person.
++ FunctionalRoles
+ – Roles which have exactly one value
+ – Usually used with primitive data values
++ TransitiveRoles
+ – Example: hasAncestor
+Simple in a rule language:
+hasAncestor(X,Z) -> hasAncestor(X,Y), hasAncestor(Y,Z).
+
++ SymmetricRoles
+ – Roles which hold in both directions
+ – I.e. hasSpouse, hasSibling
+
++ InverseRoles
+ – Roles are directed, but each role can have an inverse
+ – I.e. hasParent ≡ hasChild  hasParent(X,Y)   hasChild(Y,X)
+
+** Description Logic Knowledge Bases
++ Typically a DL knowledge base (KB) consists of two components
+ – Tbox (terminology/terminological knowledge): A set of inclusion/equivalence axioms denoting the conceptual schema/vocabulary of a domain
+  + Bear   Animal   Large
+  + transitive(hasAncestor)
+ – Abox (assertions/assertional knowledge): concept assertions and role assertions
+  + Bear(WinniPooh)
+  + hasAncestor(Susan, Granny)
+
+** DL and reasoning
++ Modern DL systems provide their users with reasoning services that can automatically deduce implicit knowledge from the explicitly represented knowledge, and always yield a correct answer in finite time.

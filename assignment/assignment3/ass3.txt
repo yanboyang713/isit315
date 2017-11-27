@@ -1,0 +1,176 @@
+Question 1
+install owlapi rdf library and protege sparql plugin
+Select File, Open From URL
+Enter the following URI: http://www.daml.org/2003/01/periodictable/PeriodicTable.owl
+
+(1)
+show all Element With Same Color With actinium
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX table: <http://www.daml.org/2003/01/periodictable/PeriodicTable#>
+SELECT ?allElementWithSameColorWithAc
+WHERE {
+?element table:name "actinium"^^<http://www.w3.org/2001/XMLSchema#string> .
+?element table:color ?color .
+?allElementWithSameColorWithAc table:color ?color .
+}
+
+(2)
+show all of color filter out duplicate results
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX table: <http://www.daml.org/2003/01/periodictable/PeriodicTable#>
+SELECT DISTINCT ?color
+WHERE {
+?element table:color ?color . 
+}
+
+(3)
+show element name, number with optional color, order by element number
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX table: <http://www.daml.org/2003/01/periodictable/PeriodicTable#>
+SELECT ?name ?number ?color
+WHERE { ?element table:name ?name .
+?element table:atomicNumber ?number .
+FILTER (?number  > "110"^^<http://www.w3.org/2001/XMLSchema#integer>)
+optional {?element table:color ?color . }
+}
+order by ?number
+
+(4)
+show all of element name start with "un"
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX table: <http://www.daml.org/2003/01/periodictable/PeriodicTable#>
+SELECT ?name
+WHERE { ?element table:name ?name .
+FILTER regex (?name, "^un")
+}
+
+Question 2
+(1)
+show one and two star accommodation
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX table: <http://www.owl-ontologies.com/travel.owl#>
+SELECT *
+WHERE {
+{?oneAndTwoStar table:hasRating table:OneStarRating .}
+UNION
+{?oneAndTwoStar table:hasRating table:TwoStarRating .}
+}
+
+(2)
+show have how many city include capital
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX table: <http://www.owl-ontologies.com/travel.owl#>
+SELECT (COUNT (?city) AS ?howmanyCity)
+WHERE {
+{?city rdf:type table:City .}
+UNION
+{?citySubClass rdfs:subClassOf table:City .
+?city rdf:type ?citySubClass}
+}
+
+(3)
+show beach name, order by desc and only show top 2
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX table: <http://www.owl-ontologies.com/travel.owl#>
+SELECT ?beachName
+WHERE {
+?beachName rdf:type table:Beach .
+}
+ORDER BY DESC  (?beachName)
+LIMIT 2
+
+(4)
+ask whether have farmland, if have not, return False. if have, return True
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX table: <http://www.owl-ontologies.com/travel.owl#>
+ASK WHERE {
+?farmland rdf:type table:Farmland .
+}
+
+(5)
+using construct
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX table: <http://www.owl-ontologies.com/travel.owl#>
+CONSTRUCT {?farmland rdf:type table:Farmland} 
+WHERE {
+?farmland rdf:type table:Town .
+}
+
+(6)
+show 2017 year all yoga activity
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX table: <http://www.owl-ontologies.com/travel.owl#>
+SELECT ?yogaActivity
+WHERE {
+?yogaActivity rdf:type table:Yoga .
+?yogaActivity table:activityStartDate ?startDate .
+?yogaActivity table:activityEndDate ?endDate .
+FILTER (?startDate>"2017-01-01T00:00:00"^^xsd:dateTime)
+FILTER (?endDate<"2017-12-30T00:00:00"^^xsd:dateTime)
+}
+
+(7)
+show accoummation MazeBackpackers, each year total operating revenue
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX table: <http://www.owl-ontologies.com/travel.owl#>
+SELECT ?year (SUM (?val) AS ?total)
+WHERE {
+?customer table:isLiveIn table:MazeBackpackers .
+?customer table:cost ?val .
+?customer table:costYear ?year
+}
+GROUP BY ?year
+
+(8)
+show every accommation company, each year total operating revenue, which total > 20
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX table: <http://www.owl-ontologies.com/travel.owl#>
+SELECT ?year ?hotel (SUM (?val) AS ?total)
+WHERE {
+?customer table:cost ?val .
+?customer table:costYear ?year .
+?customer table:isLiveIn ?hotel .
+}
+GROUP BY ?year ?hotel
+HAVING (?total > 20)

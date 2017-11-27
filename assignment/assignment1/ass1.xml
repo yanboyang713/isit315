@@ -31,7 +31,17 @@
               <rdf:_2 rdf:resource="https://solss.uow.edu.au/apir/public_subjectview.subject_info_view?p_subject_code=CSCI318"/>
               <rdf:_3 rdf:resource="https://solss.uow.edu.au/apir/public_subjectview.subject_info_view?p_subject_code=ISIT315"/>
             </rdf:Bag>
-        </ex:enrolledCourse>
+          </ex:enrolledCourse>
+
+          <ex:studentExperience>
+            <rdf:Seq rdf:about="http://yanboyang.com.studentExperience">
+              <rdf:_1 rdf:resource="http://yanboyang.com/UniversityOfWollongong"/>
+              <rdf:_2 rdf:resource="http://yanboyang.com/chinaUniversityOfMiningAndTechnology"/>
+              <rdf:_3 rdf:resource="http://yanboyang.com/tianjinJinguExperimentalHightSchool"/>
+              <rdf:_4 rdf:resource="http://yanboyang.com/primarySchoolAttachedTianjinNormalUniversity"/>
+            </rdf:Seq>
+          </ex:studentExperience>
+
 
       </rdf:Description>
 

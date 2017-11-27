@@ -1,0 +1,622 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.yanboyang.com/ontologies/family#"
+     xml:base="http://www.yanboyang.com/ontologies/family"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:family="http://www.yanboyang.com/ontologies/family#">
+    <owl:Ontology rdf:about="http://www.yanboyang.com/ontologies/family"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#ageLlimit -->
+
+    <owl:ObjectProperty rdf:about="http://www.yanboyang.com/ontologies/family#ageLlimit"/>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#hasAncestor -->
+
+    <owl:ObjectProperty rdf:about="http://www.yanboyang.com/ontologies/family#hasAncestor">
+        <owl:equivalentProperty rdf:resource="http://www.yanboyang.com/ontologies/family#hasParent"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+        <rdfs:range rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#hasChild -->
+
+    <owl:ObjectProperty rdf:about="http://www.yanboyang.com/ontologies/family#hasChild">
+        <owl:inverseOf rdf:resource="http://www.yanboyang.com/ontologies/family#hasParent"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.yanboyang.com/ontologies/family#adult"/>
+        <rdfs:range rdf:resource="http://www.yanboyang.com/ontologies/family#baby"/>
+        <rdfs:range rdf:resource="http://www.yanboyang.com/ontologies/family#child"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#hasFather -->
+
+    <owl:ObjectProperty rdf:about="http://www.yanboyang.com/ontologies/family#hasFather">
+        <rdfs:subPropertyOf rdf:resource="http://www.yanboyang.com/ontologies/family#hasParent"/>
+        <owl:inverseOf rdf:resource="http://www.yanboyang.com/ontologies/family#isFatherOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <owl:propertyDisjointWith rdf:resource="http://www.yanboyang.com/ontologies/family#hasMother"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#hasMother -->
+
+    <owl:ObjectProperty rdf:about="http://www.yanboyang.com/ontologies/family#hasMother">
+        <rdfs:subPropertyOf rdf:resource="http://www.yanboyang.com/ontologies/family#hasParent"/>
+        <owl:inverseOf rdf:resource="http://www.yanboyang.com/ontologies/family#isMontherOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#hasParent -->
+
+    <owl:ObjectProperty rdf:about="http://www.yanboyang.com/ontologies/family#hasParent">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+        <rdfs:range rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#hasSibling -->
+
+    <owl:ObjectProperty rdf:about="http://www.yanboyang.com/ontologies/family#hasSibling">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+        <rdfs:range rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#isFatherOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.yanboyang.com/ontologies/family#isFatherOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.yanboyang.com/ontologies/family#adultMale"/>
+        <rdfs:range rdf:resource="http://www.yanboyang.com/ontologies/family#baby"/>
+        <rdfs:range rdf:resource="http://www.yanboyang.com/ontologies/family#child"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#isHappy -->
+
+    <owl:ObjectProperty rdf:about="http://www.yanboyang.com/ontologies/family#isHappy"/>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#isMontherOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.yanboyang.com/ontologies/family#isMontherOf">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.yanboyang.com/ontologies/family#adultFemale"/>
+        <rdfs:range rdf:resource="http://www.yanboyang.com/ontologies/family#baby"/>
+        <rdfs:range rdf:resource="http://www.yanboyang.com/ontologies/family#child"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#knows -->
+
+    <owl:ObjectProperty rdf:about="http://www.yanboyang.com/ontologies/family#knows">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+        <rdfs:range rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#address -->
+
+    <owl:DatatypeProperty rdf:about="http://www.yanboyang.com/ontologies/family#address">
+        <rdfs:domain rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#haveAge -->
+
+    <owl:DatatypeProperty rdf:about="http://www.yanboyang.com/ontologies/family#haveAge">
+        <rdfs:domain rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#haveName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.yanboyang.com/ontologies/family#haveName">
+        <rdfs:domain rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#Name"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#homeAddress -->
+
+    <owl:DatatypeProperty rdf:about="http://www.yanboyang.com/ontologies/family#homeAddress">
+        <rdfs:subPropertyOf rdf:resource="http://www.yanboyang.com/ontologies/family#address"/>
+        <rdfs:domain rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#workAddress -->
+
+    <owl:DatatypeProperty rdf:about="http://www.yanboyang.com/ontologies/family#workAddress">
+        <rdfs:subPropertyOf rdf:resource="http://www.yanboyang.com/ontologies/family#address"/>
+        <rdfs:domain rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing">
+        <rdfs:subClassOf rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#adult -->
+
+    <owl:Class rdf:about="http://www.yanboyang.com/ontologies/family#adult">
+        <rdfs:subClassOf rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#knows"/>
+                <owl:someValuesFrom rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#hasChild"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#child"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#hasParent"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#adultFemale"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#hasParent"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#adultMale"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#adultFemale -->
+
+    <owl:Class rdf:about="http://www.yanboyang.com/ontologies/family#adultFemale">
+        <rdfs:subClassOf rdf:resource="http://www.yanboyang.com/ontologies/family#adult"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#isMontherOf"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#baby"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#isMontherOf"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#child"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.yanboyang.com/ontologies/family#adultMale"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#adultMale -->
+
+    <owl:Class rdf:about="http://www.yanboyang.com/ontologies/family#adultMale">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:oneOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.yanboyang.com/ontologies/family#boyang"/>
+                    <rdf:Description rdf:about="http://www.yanboyang.com/ontologies/family#jixian"/>
+                    <rdf:Description rdf:about="http://www.yanboyang.com/ontologies/family#wei"/>
+                    <rdf:Description rdf:about="http://www.yanboyang.com/ontologies/family#xueru"/>
+                </owl:oneOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.yanboyang.com/ontologies/family#adult"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#isHappy"/>
+                <owl:hasValue rdf:resource="http://www.yanboyang.com/ontologies/family#boyang"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#isFatherOf"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#baby"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#isFatherOf"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#child"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#baby -->
+
+    <owl:Class rdf:about="http://www.yanboyang.com/ontologies/family#baby">
+        <rdfs:subClassOf rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#hasSibling"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#baby"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#hasChild"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#hasParent"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#adultFemale"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#hasParent"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#adultMale"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#isFatherOf"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#isMontherOf"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#knows"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">5</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#babyFemale -->
+
+    <owl:Class rdf:about="http://www.yanboyang.com/ontologies/family#babyFemale">
+        <rdfs:subClassOf rdf:resource="http://www.yanboyang.com/ontologies/family#baby"/>
+        <owl:disjointWith rdf:resource="http://www.yanboyang.com/ontologies/family#babyMale"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#babyMale -->
+
+    <owl:Class rdf:about="http://www.yanboyang.com/ontologies/family#babyMale">
+        <rdfs:subClassOf rdf:resource="http://www.yanboyang.com/ontologies/family#baby"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#child -->
+
+    <owl:Class rdf:about="http://www.yanboyang.com/ontologies/family#child">
+        <rdfs:subClassOf rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#knows"/>
+                <owl:someValuesFrom rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#hasSibling"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#child"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#hasChild"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#hasParent"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#adultFemale"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#hasParent"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#adultMale"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#isFatherOf"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#isMontherOf"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.yanboyang.com/ontologies/family#people"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#childFemale -->
+
+    <owl:Class rdf:about="http://www.yanboyang.com/ontologies/family#childFemale">
+        <rdfs:subClassOf rdf:resource="http://www.yanboyang.com/ontologies/family#child"/>
+        <owl:disjointWith rdf:resource="http://www.yanboyang.com/ontologies/family#childMale"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#childMale -->
+
+    <owl:Class rdf:about="http://www.yanboyang.com/ontologies/family#childMale">
+        <rdfs:subClassOf rdf:resource="http://www.yanboyang.com/ontologies/family#child"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#people -->
+
+    <owl:Class rdf:about="http://www.yanboyang.com/ontologies/family#people">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#haveAge"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.yanboyang.com/ontologies/family#haveName"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#Name"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#boyang -->
+
+    <owl:NamedIndividual rdf:about="http://www.yanboyang.com/ontologies/family#boyang">
+        <rdf:type rdf:resource="http://www.yanboyang.com/ontologies/family#adultMale"/>
+        <hasAncestor rdf:resource="http://www.yanboyang.com/ontologies/family#xueru"/>
+        <hasFather rdf:resource="http://www.yanboyang.com/ontologies/family#wei"/>
+        <hasMother rdf:resource="http://www.yanboyang.com/ontologies/family#huilin"/>
+        <knows rdf:resource="http://www.yanboyang.com/ontologies/family#shaopu"/>
+        <haveAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">24</haveAge>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#huilin -->
+
+    <owl:NamedIndividual rdf:about="http://www.yanboyang.com/ontologies/family#huilin">
+        <rdf:type rdf:resource="http://www.yanboyang.com/ontologies/family#adultFemale"/>
+        <hasSibling rdf:resource="http://www.yanboyang.com/ontologies/family#jixian"/>
+        <isMontherOf rdf:resource="http://www.yanboyang.com/ontologies/family#boyang"/>
+        <knows rdf:resource="http://www.yanboyang.com/ontologies/family#jiuyi"/>
+        <haveName>huilin wang</haveName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#jingying -->
+
+    <owl:NamedIndividual rdf:about="http://www.yanboyang.com/ontologies/family#jingying">
+        <rdf:type rdf:resource="http://www.yanboyang.com/ontologies/family#adultFemale"/>
+        <isMontherOf rdf:resource="http://www.yanboyang.com/ontologies/family#wei"/>
+        <knows rdf:resource="http://www.yanboyang.com/ontologies/family#shaopu"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#jiuyi -->
+
+    <owl:NamedIndividual rdf:about="http://www.yanboyang.com/ontologies/family#jiuyi">
+        <rdf:type rdf:resource="http://www.yanboyang.com/ontologies/family#adultFemale"/>
+        <hasSibling rdf:resource="http://www.yanboyang.com/ontologies/family#jingying"/>
+        <hasSibling rdf:resource="http://www.yanboyang.com/ontologies/family#zhangshi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#jixian -->
+
+    <owl:NamedIndividual rdf:about="http://www.yanboyang.com/ontologies/family#jixian">
+        <rdf:type rdf:resource="http://www.yanboyang.com/ontologies/family#adultMale"/>
+        <hasChild rdf:resource="http://www.yanboyang.com/ontologies/family#shaopu"/>
+        <hasSibling rdf:resource="http://www.yanboyang.com/ontologies/family#huilin"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#liuli -->
+
+    <owl:NamedIndividual rdf:about="http://www.yanboyang.com/ontologies/family#liuli">
+        <rdf:type rdf:resource="http://www.yanboyang.com/ontologies/family#adultFemale"/>
+        <hasChild rdf:resource="http://www.yanboyang.com/ontologies/family#shaopu"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#shaopu -->
+
+    <owl:NamedIndividual rdf:about="http://www.yanboyang.com/ontologies/family#shaopu">
+        <rdf:type rdf:resource="http://www.yanboyang.com/ontologies/family#childMale"/>
+        <hasFather rdf:resource="http://www.yanboyang.com/ontologies/family#jixian"/>
+        <hasMother rdf:resource="http://www.yanboyang.com/ontologies/family#liuli"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#wei -->
+
+    <owl:NamedIndividual rdf:about="http://www.yanboyang.com/ontologies/family#wei">
+        <rdf:type rdf:resource="http://www.yanboyang.com/ontologies/family#adultMale"/>
+        <hasFather rdf:resource="http://www.yanboyang.com/ontologies/family#xueru"/>
+        <hasMother rdf:resource="http://www.yanboyang.com/ontologies/family#jingying"/>
+        <isFatherOf rdf:resource="http://www.yanboyang.com/ontologies/family#boyang"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#xueru -->
+
+    <owl:NamedIndividual rdf:about="http://www.yanboyang.com/ontologies/family#xueru">
+        <rdf:type rdf:resource="http://www.yanboyang.com/ontologies/family#adultMale"/>
+        <isFatherOf rdf:resource="http://www.yanboyang.com/ontologies/family#wei"/>
+        <knows rdf:resource="http://www.yanboyang.com/ontologies/family#shaopu"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.yanboyang.com/ontologies/family#zhangshi -->
+
+    <owl:NamedIndividual rdf:about="http://www.yanboyang.com/ontologies/family#zhangshi">
+        <rdf:type rdf:resource="http://www.yanboyang.com/ontologies/family#adultFemale"/>
+        <hasSibling rdf:resource="http://www.yanboyang.com/ontologies/family#jingying"/>
+        <hasSibling rdf:resource="http://www.yanboyang.com/ontologies/family#jiuyi"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.yanboyang.com/ontologies/family#adult"/>
+            <rdf:Description rdf:about="http://www.yanboyang.com/ontologies/family#baby"/>
+            <rdf:Description rdf:about="http://www.yanboyang.com/ontologies/family#child"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
